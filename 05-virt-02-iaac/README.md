@@ -14,4 +14,4 @@
 - Выполнено подключение по SSH и проверена корректность установки всех утилит.
 
 ### Скриншот проверки установленного ПО:
-![Проверка Docker, htop, tmux]<img width="969" height="590" alt="task3_verification" src="https://github.com/user-attachments/assets/c638d623-b532-4db0-a5f0-5531f0eee868" />
+<img width="969" height="590" alt="task3_verification" src="https://github.com/user-attachments/assets/c638d623-b532-4db0-a5f0-5531f0eee868" />

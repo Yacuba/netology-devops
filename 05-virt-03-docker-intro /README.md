@@ -32,7 +32,7 @@
    ```bash
    docker build -t yacuba/custom-nginx:1.0.0 .
    docker login
-   docker push yacuba/custom-nginx:1.0.0</code></pre>
+   docker push yacuba/custom-nginx:1.0.0
    ```
    
    <img width="880" height="275" alt="Снимок экрана 2026-07-14 162929" src="https://github.com/user-attachments/assets/835af6f3-83e8-4d06-a934-5522308c7703" />

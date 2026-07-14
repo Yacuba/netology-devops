@@ -7,7 +7,9 @@
 
 2. **Скачивание базового образа**  
    Был скачан официальный образ `nginx:1.29.0` с помощью команды:
-   <pre><code>docker pull nginx:1.29.0</code></pre>
+   ```bash
+   docker pull nginx:1.29.0
+   ```
    
    <img width="728" height="290" alt="Снимок экрана 2026-07-14 161526" src="https://github.com/user-attachments/assets/1a8e6acb-02a6-43ce-b6ea-fd0bbdbb2845" />
 
@@ -27,9 +29,11 @@
 
 5. **Сборка и отправка образа**  
    Образ был успешно собран локально, тегирован и отправлен в Docker Hub командами:
-   <pre><code>docker build -t yacuba/custom-nginx:1.0.0 .
-docker login
-docker push yacuba/custom-nginx:1.0.0</code></pre>
+   ```bash
+   docker build -t yacuba/custom-nginx:1.0.0 .
+   docker login
+   docker push yacuba/custom-nginx:1.0.0</code></pre>
+   ```
    
    <img width="880" height="275" alt="Снимок экрана 2026-07-14 162929" src="https://github.com/user-attachments/assets/835af6f3-83e8-4d06-a934-5522308c7703" />
 

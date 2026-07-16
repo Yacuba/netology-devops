@@ -182,3 +182,70 @@
 
 ## Задача 5
 
+1. **Первоначальный запуск проекта**  
+   В директории `/tmp/netology/docker/task5` были созданы два файла: `compose.yaml` (описывающий сервис Portainer) и `docker-compose.yaml` (описывающий локальный Registry). При выполнении команды `docker compose up -d` запустился только файл **`compose.yaml`**.
+   
+   <img width="1321" height="267" alt="Снимок экрана 2026-07-16 154110" src="https://github.com/user-attachments/assets/da5d0aca-f033-4f51-8c20-d9c9df2bd9e4" />
+
+   Согласно спецификации Docker Compose, имя `compose.yaml` является приоритетным стандартом по умолчанию. Если в одной директории находятся файлы с именами `compose.yaml` и `docker-compose.yaml`, утилита Compose всегда выбирает и запускает приоритетный `compose.yaml`, игнорируя второй файл.
+
+2. **Объединение файлов через директиву `include`**  
+   Файл `compose.yaml` был отредактирован для автоматического подключения `docker-compose.yaml`:
+   <pre><code>include:
+  - docker-compose.yaml
+
+services:
+  portainer:
+    network_mode: host
+    image: portainer/portainer-ce:latest
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock</code></pre>
+
+3. **Загрузка кастомного образа в локальный Registry**  
+   После повторного запуска проекта (запустились оба контейнера) кастомный образ `yacuba/custom-nginx:1.0.0` был тегирован и успешно отправлен в локальный реестр:
+   ```bash   
+   docker tag yacuba/custom-nginx:1.0.0 127.0.0.1:5000/custom-nginx:latest
+   docker push 127.0.0.1:5000/custom-nginx:latest
+   docker compose up -d
+   ```
+   
+   <img width="1327" height="420" alt="Снимок экрана 2026-07-16 155900" src="https://github.com/user-attachments/assets/42c9a93d-b1f1-4c00-8e8b-b44f273f5d7c" />
+
+4. **Деплой стека в Portainer**  
+   Был выполнен вход в Portainer по адресу `http://<IP_ВМ>:9000` с хостовой ОС. В локальном окружении во вкладке **Stacks** был развернут стек со следующим манифестом:
+   <pre><code>version: '3'
+
+services:
+  nginx:
+    image: 127.0.0.1:5000/custom-nginx
+    ports:
+      - "9090:80"</code></pre>
+   
+   <img width="918" height="282" alt="Снимок экрана 2026-07-16 161154" src="https://github.com/user-attachments/assets/5a0fe3c6-d68c-47bd-a0ec-787e790df4ac" />
+
+5. **Инспектирование контейнера в Portainer**  
+   В разделе **Containers** был выбран запущенный контейнер Nginx. Скриншот параметров инспектирования в представлении `<>` Tree:
+   
+   <img width="818" height="1075" alt="Снимок экрана 2026-07-16 161802" src="https://github.com/user-attachments/assets/9a5760f8-ea7c-4826-8227-edec5294c45f" />
+
+6. **Удаление манифеста и завершение работы**  
+   Файл `compose.yaml` был удален, после чего выполнена команда обновления проекта:
+   ```bash
+   rm compose.yaml
+   docker compose up -d
+   ```
+
+   **Суть предупреждения:**  
+   Поскольку `compose.yaml` удален, Docker Compose теперь считывает только оставшийся файл `docker-compose.yaml`, где описан только сервис `registry`. Compose обнаруживает, что контейнер Portainer, запущенный ранее в рамках этого же проекта, теперь отсутствует в текущей конфигурации и классифицирует его как «осиротевший» (orphan) и рекомендует использовать флаг `--remove-orphans` для его удаления.
+
+   **Выполненные действия:**  
+   * Осиротевший контейнер Portainer был удален командой:
+     ```bash
+     docker compose up -d --remove-orphans
+     ```
+   * Весь проект был успешно остановлен и удален одной командой:
+     ```bash
+     docker compose down
+     ```
+   
+   <img width="1320" height="383" alt="Снимок экрана 2026-07-16 162153" src="https://github.com/user-attachments/assets/39659351-63f6-4d73-ba29-94992d854f7f" />

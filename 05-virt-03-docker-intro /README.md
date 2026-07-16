@@ -190,7 +190,8 @@
 
 2. **Объединение файлов через директиву `include`**  
    Файл `compose.yaml` был отредактирован для автоматического подключения `docker-compose.yaml`:
-   <pre><code>include:
+```yaml
+include:
   - docker-compose.yaml
 
 services:
@@ -198,7 +199,8 @@ services:
     network_mode: host
     image: portainer/portainer-ce:latest
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock</code></pre>
+      - /var/run/docker.sock:/var/run/docker.sock
+```
 
 3. **Загрузка кастомного образа в локальный Registry**  
    После повторного запуска проекта (запустились оба контейнера) кастомный образ `yacuba/custom-nginx:1.0.0` был тегирован и успешно отправлен в локальный реестр:
@@ -212,13 +214,15 @@ services:
 
 4. **Деплой стека в Portainer**  
    Был выполнен вход в Portainer по адресу `http://<IP_ВМ>:9000` с хостовой ОС. В локальном окружении во вкладке **Stacks** был развернут стек со следующим манифестом:
-   <pre><code>version: '3'
+  ```
+  version: '3'
 
-services:
-  nginx:
-    image: 127.0.0.1:5000/custom-nginx
-    ports:
-      - "9090:80"</code></pre>
+  services:
+    nginx:
+      image: 127.0.0.1:5000/custom-nginx
+      ports:
+        - "9090:80"
+  ```
    
    <img width="918" height="282" alt="Снимок экрана 2026-07-16 161154" src="https://github.com/user-attachments/assets/5a0fe3c6-d68c-47bd-a0ec-787e790df4ac" />
 

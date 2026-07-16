@@ -144,4 +144,41 @@
 
 ## Задача 4
 
+В рамках данной задачи была изучена работа с общими томами (Bind Mounts) для обмена данными между хост-системой и несколькими контейнерами.
+
+1. **Запуск контейнеров с общим томом**  
+   Были запущены два контейнера из образов `centos:7` и `debian:latest`. Текущий рабочий каталог хоста `$(pwd)` (`~/task4`) был смонтирован в директорию `/data` каждого из контейнеров:
+   ```bash
+   docker run -dt --name centos-t4 -v $(pwd):/data centos:7
+   docker run -dt --name debian-t4 -v $(pwd):/data debian:latest
+   ```
+   
+   <img width="891" height="384" alt="Снимок экрана 2026-07-16 151514" src="https://github.com/user-attachments/assets/4cae8a28-e599-4d80-b89c-2ab8919e5134" />
+
+2. **Создание файлов**  
+   * Изнутри первого контейнера (`centos-t4`) был создан файл `/data/centos_file.txt`:
+     ```bash
+     docker exec -it centos-t4 bash
+     echo 'It is CentOS file!' > /data/centos_file.txt
+     exit
+     ```
+   * На хостовой машине в текущем каталоге `~/task4` был создан файл `host_file.txt`:
+     ```bash
+     echo 'It is Host file!' > host_file.txt
+     ```
+
+3. **Проверка общего доступа во втором контейнере**  
+   Был выполнен вход во второй контейнер (`debian-t4`) для проверки наличия и содержимого созданных файлов в директории `/data`:
+   ```bash
+   docker exec -it debian-t4 bash
+   ls -la /data
+   cat /data/centos_file.txt /data/host_file.txt
+   exit
+   ```
+   
+   <img width="616" height="191" alt="Снимок экрана 2026-07-16 152406" src="https://github.com/user-attachments/assets/29c8b444-f75f-4221-8d3d-b48137997f2c" />
+
+   Оба файла успешно отображаются и читаются внутри контейнера Debian. Это подтверждает, что изменения в смонтированной директории мгновенно синхронизируются между хостом и всеми подключенными контейнерами.
+
 ## Задача 5
+

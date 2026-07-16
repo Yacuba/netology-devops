@@ -22,8 +22,8 @@
    
    <img width="447" height="253" alt="Снимок экрана 2026-07-14 161955" src="https://github.com/user-attachments/assets/cdd95cc5-16e1-4f60-96c9-47fd48918712" />
 
-4. **Подготовка репозитория на Docker Hub**  
-   В Docker Hub был создан публичный репозиторий `yacuba/custom-nginx`:
+4. **Подготовка репозитория на Docker Hub**
+   В Docker Hub был создан публичный репозиторий `yacuba/custom-nginx`:   
    
    <img width="395" height="260" alt="Снимок экрана 2026-07-14 162900" src="https://github.com/user-attachments/assets/c7d32523-0835-49b3-9a29-58d876bd52f6" />
 

@@ -191,7 +191,7 @@
 2. **Объединение файлов через директиву `include`**  
    Файл `compose.yaml` был отредактирован для автоматического подключения `docker-compose.yaml`:
    <pre><code>include:
-  - docker-compose.yaml</code></pre>
+  - docker-compose.yaml
 
 services:
   portainer:

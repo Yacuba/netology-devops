@@ -27,7 +27,7 @@
    
    <img width="395" height="260" alt="Снимок экрана 2026-07-14 162900" src="https://github.com/user-attachments/assets/c7d32523-0835-49b3-9a29-58d876bd52f6" />
 
-5. **Сборка и отправка образа**  
+6. **Сборка и отправка образа**  
    Образ был успешно собран локально, тегирован и отправлен в Docker Hub командами:
    ```bash
    docker build -t yacuba/custom-nginx:1.0.0 .
@@ -41,7 +41,7 @@
    
    <img width="612" height="641" alt="Снимок экрана 2026-07-14 162948" src="https://github.com/user-attachments/assets/cb5efffc-7ac2-4a47-973e-7ea364d44b98" />
 
-6. **Ссылка на публичный репозиторий:**  
+7. **Ссылка на публичный репозиторий:**  
    [https://hub.docker.com/r/yacuba/custom-nginx/general](https://hub.docker.com/repository/docker/yacuba/custom-nginx/general)
 
 ## Задача 2

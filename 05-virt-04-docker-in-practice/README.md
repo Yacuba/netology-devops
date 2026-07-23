@@ -42,25 +42,6 @@ README.md
 ```
 
 3. Разработан файл `Dockerfile.python` с применением multistage-сборки на базе образа `python:3.12-slim`:
-```dockerfile
-FROM python:3.12-slim
-
-WORKDIR /app
-
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-
-FROM python:3.12-slim
-
-WORKDIR /app
-
-COPY --from=0 /usr/local /usr/local
-
-COPY . .
-
-# Запускаем приложение с помощью uvicorn, делая его доступным по сети
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "5000"]
-```
 
 <img width="632" height="358" alt="Снимок экрана 2026-07-23 165656" src="https://github.com/user-attachments/assets/1ca0636a-de1d-40ea-ac52-42cbe6dd201a" />
 

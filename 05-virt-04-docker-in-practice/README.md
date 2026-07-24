@@ -212,3 +212,64 @@ docker exec -ti db mysql -uroot -pYtReWq4321 -e "show databases; use virtd; show
 ```
 
 <img width="815" height="457" alt="Снимок экрана 2026-07-24 212201" src="https://github.com/user-attachments/assets/533e513d-c5ca-4c76-a75e-503bd37f5fd6" />
+
+## Задача 4. Автоматизация развертывания и проверка внешнего трафика
+
+1. Разработан и добавлен в репозиторий скрипт `deploy.sh` для развертывания проекта в директории `/opt/shvirtd-example-python`:
+
+```bash
+#!/bin/bash
+set -e
+
+REPO_URL="https://github.com/Yacuba/shvirtd-example-python.git"
+TARGET_DIR="/opt/shvirtd-example-python"
+
+echo "=== Запуск развертывания проекта ==="
+
+if [ -d "$TARGET_DIR" ]; then
+    echo "Каталог $TARGET_DIR уже существует. Обновляем репозиторий..."
+    cd "$TARGET_DIR"
+    git pull origin main
+else
+    echo "Клонируем форк-репозиторий в $TARGET_DIR..."
+    sudo git clone "$REPO_URL" "$TARGET_DIR"
+    cd "$TARGET_DIR"
+fi
+
+echo "Запускаем Docker Compose стек..."
+sudo docker compose up -d
+
+echo "=== Развертывание успешно завершено ==="
+```
+
+2. Выполнен запуск автоматического деплоя:
+```bash
+sudo ./deploy.sh
+```
+
+3. Проведена проверка доступности сервиса через внешний сервис [check-host.net](https://check-host.net/check-http) по порту `8090`:
+
+<img width="689" height="457" alt="Снимок экрана 2026-07-24 220241" src="https://github.com/user-attachments/assets/23c162f8-a7da-4af4-b7a4-6648bf97e7df" />
+
+4. Выполнен SQL-запрос внутри контейнера `db` для проверки сохранения внешних IP-адресов серверов проверки:
+```bash
+docker exec -ti db mysql -uroot -pYtReWq4321 -e "use virtd; SELECT * from requests ORDER BY id DESC LIMIT 10;"
+```
+
+<img width="818" height="325" alt="Снимок экрана 2026-07-24 214350" src="https://github.com/user-attachments/assets/4c272b22-a2fc-443d-899c-0b1f0932e847" />
+
+*Ссылка на форк-репозиторий:* [https://github.com/Yacuba/shvirtd-example-python](https://github.com/Yacuba/shvirtd-example-python)
+
+### Дополнительное задание 4.5 (*) - Настройка Docker Remote SSH Context
+
+1. На локальном компьютере с Windows 11 в PowerShell создан удаленный контекст для управления Docker на облачной ВМ по протоколу SSH:
+```powershell
+docker context create remote-vm --docker "host=ssh://user@<ВНЕШНИЙ_IP_ВМ>"
+```
+
+2. Выполнен удаленный запрос списка контейнеров с облачной ВМ прямо из PowerShell на Windows 11:
+```powershell
+docker --context remote-vm ps -a
+```
+
+<img width="1105" height="254" alt="Снимок экрана 2026-07-24 215916" src="https://github.com/user-attachments/assets/9bfa5282-7da5-49b8-b0e3-33f8efc832cc" />

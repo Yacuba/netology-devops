@@ -120,3 +120,34 @@ docker exec -ti mysql-local mysql -uapp -pvery_strong -e "use example; show tabl
 ```
 
 <img width="925" height="154" alt="Снимок экрана 2026-07-23 173530" src="https://github.com/user-attachments/assets/5561ea04-eb8e-4fc1-8aee-bee9eb412964" />
+
+## Задача 2 (*)
+
+1. Создан Yandex Container Registry с именем `test`:
+```bash
+yc container registry create --name test
+```
+ID созданного реестра: `crpvhk8tgssq2h3392rm`.
+
+2. Настроена аутентификация локального Docker:
+```bash
+yc container registry configure-docker
+```
+
+3. Образ `test-python-app:v1` затегирован и загружен в Yandex Container Registry:
+```bash
+docker tag test-python-app:v1 cr.yandex/crpvhk8tgssq2h3392rm/test-python-app:v1
+docker push cr.yandex/crpvhk8tgssq2h3392rm/test-python-app:v1
+```
+
+4. Выполнено сканирование образа на уязвимости:
+```bash
+yc container image scan crpnj2lq58gmfrk38e96
+yc container image list-vulnerabilities --scan-result-id cheh7ofcrpgpjprohc0r
+```
+
+5. Отчет сканирования:
+Обнаружено 169 уязвимостей (4 Critical, 19 High, 54 Medium, 63 Low, 29 Undefined).
+
+<img width="1106" height="535" alt="Снимок экрана 2026-07-24 204306" src="https://github.com/user-attachments/assets/b6798cd3-ac30-4dc3-8ae2-96e87f76507d" />
+<img width="892" height="463" alt="Снимок экрана 2026-07-24 204335" src="https://github.com/user-attachments/assets/8690aadb-8916-4fcb-abeb-873485ceb91b" />

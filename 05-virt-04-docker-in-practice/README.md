@@ -151,3 +151,64 @@ yc container image list-vulnerabilities --scan-result-id cheh7ofcrpgpjprohc0r
 
 <img width="1106" height="535" alt="Снимок экрана 2026-07-24 204306" src="https://github.com/user-attachments/assets/b6798cd3-ac30-4dc3-8ae2-96e87f76507d" />
 <img width="892" height="463" alt="Снимок экрана 2026-07-24 204335" src="https://github.com/user-attachments/assets/8690aadb-8916-4fcb-abeb-873485ceb91b" />
+
+## Задача 3. Разработка compose.yaml и запуск стека сервисов
+
+1. В корне проекта создан файл `compose.yaml`, подключающий `proxy.yaml` через директиву `include`. В файле описаны сервисы `db` (MySQL 8) и `web` (FastAPI-приложение на базе образа из Yandex Container Registry), а также настроена сеть `backend` с фиксированными IP-адресами:
+
+```yaml
+include:
+  - proxy.yaml
+
+services:
+  db:
+    image: mysql:8
+    container_name: db
+    restart: always
+    env_file:
+      - .env
+    networks:
+      backend:
+        ipv4_address: 172.20.0.10
+
+  web:
+    image: cr.yandex/crpvhk8tgssq2h3392rm/test-python-app:v1
+    container_name: web
+    restart: always
+    env_file:
+      - .env
+    environment:
+      DB_HOST: db
+      DB_USER: app
+      DB_PASSWORD: QwErTy1234
+      DB_NAME: virtd
+    depends_on:
+      - db
+    networks:
+      backend:
+        ipv4_address: 172.20.0.5
+
+networks:
+  backend:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/24
+```
+
+2. Запуск сервисов в фоновом режиме:
+```bash
+docker compose up -d
+```
+
+3. Выполнена проверка работы сервиса через запрос на порт 8090 (ingress-proxy):
+```bash
+curl -L http://127.0.0.1:8090 -w "\n"
+```
+
+4. Выполнено подключение к СУБД MySQL и проверка содержимого таблицы `requests`:
+```bash
+docker exec -ti db mysql -uroot -pYtReWq4321 -e "show databases; use virtd; show tables; SELECT * from requests LIMIT 10;"
+```
+
+<img width="815" height="457" alt="Снимок экрана 2026-07-24 212201" src="https://github.com/user-attachments/assets/533e513d-c5ca-4c76-a75e-503bd37f5fd6" />

@@ -121,7 +121,7 @@ docker exec -ti mysql-local mysql -uapp -pvery_strong -e "use example; show tabl
 
 <img width="925" height="154" alt="Снимок экрана 2026-07-23 173530" src="https://github.com/user-attachments/assets/5561ea04-eb8e-4fc1-8aee-bee9eb412964" />
 
-## Задача 2 (*)
+## Задача 2
 
 1. Создан Yandex Container Registry с именем `test`:
 ```bash
@@ -274,7 +274,7 @@ docker --context remote-vm ps -a
 
 <img width="1105" height="254" alt="Снимок экрана 2026-07-24 215916" src="https://github.com/user-attachments/assets/9bfa5282-7da5-49b8-b0e3-33f8efc832cc" />
 
-## Задача 5 (*) — Резервное копирование базы данных MySQL по расписанию
+## Задача 5. Резервное копирование базы данных MySQL по расписанию
 
 1. Разработан скрипт `/opt/backup.sh` для автоматического создания дампа базы данных в сети `backend` через контейнер `schnitzler/mysqldump`. Для безопасности учетные данные считываются из файла `.env`, добавленый в `.gitignore` и не передающийся в Git:
 
@@ -317,3 +317,41 @@ docker run --rm \
 3. Подтверждено создание резервных копий каждые 60 секунд в каталоге `/opt/backup`:
 
 <img width="638" height="175" alt="Снимок экрана 2026-07-25 185508" src="https://github.com/user-attachments/assets/2e62efe4-3a1f-45b5-8231-68daeb05ad6c" />
+
+## Задача 6. Извлечение бинарного файла из Docker-образа с помощью dive и docker save
+
+1. Установлена утилита `dive` и скачан образ `hashicorp/terraform:latest`:
+```bash
+wget https://github.com/wagoodman/dive/releases/download/v0.13.1/dive_0.13.1_linux_amd64.deb
+sudo apt install ./dive_0.13.1_linux_amd64.deb -y
+rm dive_0.13.1_linux_amd64.deb
+docker pull hashicorp/terraform:latest
+```
+
+2. Выполнено исследование структуры слоев и местоположения бинарного файла `/bin/terraform` с помощью утилиты `dive`:
+```bash
+dive hashicorp/terraform:latest
+```
+
+<img width="1358" height="274" alt="Снимок экрана 2026-07-25 202418" src="https://github.com/user-attachments/assets/8b1c212b-d66d-477d-a922-f82db3803922" />
+
+3. Образ сохранен в тар-архив через `docker save`, извлечен слой и проверена версия бинарного файла `terraform`:
+```bash
+docker save -o terraform.tar hashicorp/terraform:latest
+mkdir -p /tmp/tf_extracted
+tar -xf terraform.tar -C /tmp/tf_extracted
+
+for f in $(find /tmp/tf_extracted -type f); do
+    if tar -tf "$f" 2>/dev/null | grep -q "bin/terraform"; then
+        tar -xf "$f" bin/terraform
+        mv bin/terraform ./terraform
+        rm -rf bin
+        break
+    fi
+done
+
+chmod +x ./terraform
+./terraform version
+```
+
+<img width="586" height="229" alt="Снимок экрана 2026-07-25 203125" src="https://github.com/user-attachments/assets/543b4641-1970-45e7-b025-ac70f8f713ed" />

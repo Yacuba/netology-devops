@@ -273,3 +273,47 @@ docker --context remote-vm ps -a
 ```
 
 <img width="1105" height="254" alt="Снимок экрана 2026-07-24 215916" src="https://github.com/user-attachments/assets/9bfa5282-7da5-49b8-b0e3-33f8efc832cc" />
+
+## Задача 5 (*) — Резервное копирование базы данных MySQL по расписанию
+
+1. Разработан скрипт `/opt/backup.sh` для автоматического создания дампа базы данных в сети `backend` через контейнер `schnitzler/mysqldump`. Для безопасности учетные данные считываются из файла `.env`, добавленый в `.gitignore` и не передающийся в Git:
+
+```bash
+#!/bin/bash
+set -e
+
+ENV_FILE="/opt/shvirtd-example-python/.env"
+
+if [ -f "$ENV_FILE" ]; then
+    export $(grep -v "^#" "$ENV_FILE" | xargs)
+else
+    echo "Файл $ENV_FILE не найден!"
+    exit 1
+fi
+
+mkdir -p /opt/backup
+
+NET_NAME=$(docker network ls --format "{{.Name}}" | grep "backend" | head -n 1)
+
+FILENAME="virtd_$(date +%Y%m%d_%H%M%S).sql.gz"
+
+docker run --rm \
+  --entrypoint "" \
+  --network "$NET_NAME" \
+  -v /opt/backup:/backup \
+  -e MYSQL_HOST="db" \
+  -e MYSQL_USER="root" \
+  -e MYSQL_PASSWORD="$MYSQL_ROOT_PASSWORD" \
+  -e MYSQL_DATABASE="$MYSQL_DATABASE" \
+  schnitzler/mysqldump \
+  sh -c "mysqldump --opt -h \$MYSQL_HOST -u \$MYSQL_USER -p\$MYSQL_PASSWORD \$MYSQL_DATABASE | gzip > /backup/$FILENAME"
+```
+
+2. Настроен автоматический запуск скрипта раз в минуту в планировщике `crontab` пользователя `root`:
+```text
+* * * * * /opt/backup.sh >> /var/log/backup.log 2>&1
+```
+
+3. Подтверждено создание резервных копий каждые 60 секунд в каталоге `/opt/backup`:
+
+<img width="638" height="175" alt="Снимок экрана 2026-07-25 185508" src="https://github.com/user-attachments/assets/2e62efe4-3a1f-45b5-8231-68daeb05ad6c" />

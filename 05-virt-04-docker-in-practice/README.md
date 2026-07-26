@@ -171,7 +171,7 @@ services:
       backend:
         ipv4_address: 172.20.0.10
 
-  web:
+web:
     image: cr.yandex/crpvhk8tgssq2h3392rm/test-python-app:v1
     container_name: web
     restart: always
@@ -179,9 +179,9 @@ services:
       - .env
     environment:
       DB_HOST: db
-      DB_USER: app
-      DB_PASSWORD: QwErTy1234
-      DB_NAME: virtd
+      DB_USER: ${MYSQL_USER}
+      DB_PASSWORD: ${MYSQL_PASSWORD}
+      DB_NAME: ${MYSQL_DATABASE}
     depends_on:
       - db
     networks:

@@ -10,3 +10,6 @@
 * [Практика 3. Оркестрация группой Docker контейнеров на примере Docker Compose](./05-virt-03-docker-intro/README.md)
 * [Практика 4. Практическое применение Docker](./05-virt-04-docker-in-practice/README.md)
 * [Практика 5. Оркестрация кластером Docker контейнеров на примере Docker Swarm](./05-virt-05-docker-swarm/README.md)
+
+### Блок «Облачная инфраструктура. Terraform»
+* [Практика 1. Введение в Terraform](./netology-devops/ter-homeworks/01/README.md)

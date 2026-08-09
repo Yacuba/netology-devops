@@ -187,7 +187,7 @@ resource "docker_container" "mysql" {
 1. Установка OpenTofu  
 В рабочей среде установлен **OpenTofu** (открытый форк Terraform под лицензией MPL 2.0):
 
-![11_opentofu_version_screenshot]
+<img width="235" height="51" alt="Снимок экрана 2026-08-10 000434" src="https://github.com/user-attachments/assets/fd23e64d-5d1a-4edd-9827-51d3bc23a129" />
 
 ---
 
@@ -195,11 +195,10 @@ resource "docker_container" "mysql" {
 Перед проверкой ранее созданные ресурсы были удалены командой `terraform destroy`.  
 Затем весь цикл создания инфраструктуры (развертывание ВМ в Yandex Cloud и запуск контейнера MySQL на удаленном Docker-демоне по SSH) был повторен с помощью команд `tofu apply -auto-approve`:
 
-![12_opentofu_apply_screenshot]
+<img width="978" height="169" alt="Снимок экрана 2026-08-10 001048" src="https://github.com/user-attachments/assets/53f4423a-e631-4141-bcf1-edd2bbbae7b1" />
 
 После создания ВМ через OpenTofu был получен обновленный IP-адрес. В файле `mysql.tf` был скорректирован IP-адрес хоста и выполнена команда `tofu apply`.  
 Проверка переменных окружения внутри контейнера `mysql_server` подтвердила успешный запуск:
 
-![13_opentofu_mysql_env_screenshot]
-
+<img width="466" height="240" alt="Снимок экрана 2026-08-10 001906" src="https://github.com/user-attachments/assets/923b15a3-416f-493e-81a5-04a2aa957c4a" />
 **Вывод:** OpenTofu продемонстрировал полную бинарную и конфигурационную совместимость с Terraform, применив идентичный HCL-код и провайдеры без каких-либо ошибок.

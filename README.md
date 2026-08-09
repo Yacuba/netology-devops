@@ -12,4 +12,4 @@
 * [Практика 5. Оркестрация кластером Docker контейнеров на примере Docker Swarm](./05-virt-05-docker-swarm/README.md)
 
 ### Блок «Облачная инфраструктура. Terraform»
-* [Практика 1. Введение в Terraform](./netology-devops/ter-homeworks/01/README.md)
+* [Практика 1. Введение в Terraform](./ter-homeworks/01/README.md)

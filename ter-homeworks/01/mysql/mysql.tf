@@ -11,7 +11,7 @@ terraform {
 
 # подключение к Docker на удаленной ВМ по SSH
 provider "docker" {
-  host = "ssh://ubuntu@51.250.84.16:22"
+  host = "ssh://ubuntu@51.250.90.250:22"
   ssh_opts = [
     "-o", "StrictHostKeyChecking=no",
     "-o", "UserKnownHostsFile=/dev/null"

@@ -126,7 +126,7 @@ provider "docker" {
 }
 ```
 
-![09_docker_provider_ssh_doc_screenshot]
+<img width="704" height="507" alt="Снимок экрана 2026-08-09 232547" src="https://github.com/user-attachments/assets/f99d2e18-f845-4539-9e48-c7298019900b" />
 
 ---
 
@@ -180,4 +180,4 @@ resource "docker_container" "mysql" {
 5. Проверка ENV-переменных внутри контейнера на ВМ  
 После выполнения `terraform apply` выполнено подключение к удаленной ВМ по SSH и выведены переменные окружения запущенного контейнера `mysql_server`:
 
-![10_mysql_env_screenshot]
+<img width="468" height="237" alt="Снимок экрана 2026-08-09 233519" src="https://github.com/user-attachments/assets/b98cf669-672f-4a15-8c30-b659429d4d5e" />

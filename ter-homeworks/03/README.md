@@ -17,11 +17,11 @@
 3. Выполнена инициализация и применение конфигурации (`terraform init`, `terraform apply`).  
 
 ### Результат применения:  
-![Apply complete!](task_1_screenshot_1)<br>
+<img width="631" height="142" alt="Снимок экрана 2026-08-15 172234" src="https://github.com/user-attachments/assets/8fa4a935-77bd-4d93-8961-dcfc128b9798" /><br>
 
 ### Скриншот правил группы безопасности в консоли Yandex Cloud:
 
-![Правила группы безопасности](task_1_screenshot_2)<br>
+<img width="986" height="519" alt="Снимок экрана 2026-08-15 172041" src="https://github.com/user-attachments/assets/629668d5-80f2-4ce3-b80b-3bff0dad690f" /><br>
 
 ---
 
@@ -168,7 +168,7 @@
 
 5. Конфигурация успешно применена. Все виртуальные машины созданы в облаке.  
 
-![Список созданных ВМ в консоли Yandex Cloud](task_2_screenshot_1)
+<img width="720" height="232" alt="Снимок экрана 2026-08-15 202211" src="https://github.com/user-attachments/assets/ee71aa29-7374-4750-aab2-a9e32f8ee485" /><br>
 
 ---
 
@@ -283,7 +283,7 @@
 
 3. Конфигурация успешно применена. Дополнительные диски созданы и смонтированы к виртуальной машине `storage`.  
 
-![Подключенные диски в консоли Yandex Cloud](task_3_screenshot_1)
+<img width="975" height="390" alt="Снимок экрана 2026-08-15 204636" src="https://github.com/user-attachments/assets/cf614ab6-e161-4223-a806-85e755edce9a" /><br>
 
 ---
 
@@ -366,7 +366,7 @@
 
 2. Выполнена команда `terraform output`, результат вывода:  
 
-![Вывод команды terraform output](task_5_screenshot_1) <br>
+<img width="324" height="378" alt="Снимок экрана 2026-08-15 213459" src="https://github.com/user-attachments/assets/9f3c00b0-f15c-4fbd-912f-7188127e9ebc" /><br>
 
 ---
 
@@ -429,11 +429,11 @@
 
 4. Выполнено применение конфигурации с внешними IP. Плейбук успешно подключился ко всем 5 созданным виртуальным машинам.  
 
-![Успешный запуск Ansible Playbook](task_6_screenshot_1)<br>
+<img width="1155" height="233" alt="Снимок экрана 2026-08-15 220610" src="https://github.com/user-attachments/assets/9e15d6cf-de96-44d3-91ab-35dfab969a18" /><br>
 
 5. Для проверки работы шаблона в сценарии Bastion-сервера у всех ВМ были отключены внешние IP-адреса (`nat = false`). Шаблон `hosts.tftpl` корректно подставил внутренние IP-адреса подсети (`10.0.1.X`) в файл `hosts.cfg`.  
 
-![Файл hosts.cfg при nat=false](task_6_screenshot_2)<br>
+<img width="555" height="212" alt="Снимок экрана 2026-08-15 221806" src="https://github.com/user-attachments/assets/0e883661-f72f-4c09-bf0d-d01c9b5997c8" /><br>
 
 ---
 
@@ -448,7 +448,7 @@
    })
    ```
 
-![Результат выполнения выражения в terraform console](task_7_screenshot_1)
+<img width="1095" height="243" alt="Снимок экрана 2026-08-15 222844" src="https://github.com/user-attachments/assets/206bfe44-9d93-467f-8fed-f5fd4a6fc7e0" /><br>
 
 ---
 
@@ -468,12 +468,12 @@ ${i["name"]} ansible_host=${i["network_interface"][0]["nat_ip_address"] platform
 1. Отсутствовала закрывающая фигурная скобка `}` в блоке `ansible_host=${...`. Terraform зафиксировал ошибку синтаксиса на строке 3 (позиции 85-86):
    > `Call to function "templatefile" failed: hosts_task8.tftpl:3,85-86: Invalid character;`  
 
-   ![Диагностика ошибки 1](task_8_screenshot_1)<br>
+   <img width="1245" height="157" alt="Снимок экрана 2026-08-15 223625" src="https://github.com/user-attachments/assets/2002521e-0a07-4b7b-a0f5-7baee40f2543" /><br>
 
 2. В выражении `${i["platform_id "]}` присутствовал лишний пробел на конце ключа. Terraform сообщил о невозможности найти элемент в коллекции на строке 3 (позиции 89-105):
    > `Call to function "templatefile" failed: hosts_task8.tftpl:3,89-105: Invalid index; The given key does not identify an element in this collection value.`  
 
-   ![Диагностика ошибки 2](task_8_screenshot_2)<br>
+   <img width="1288" height="128" alt="Снимок экрана 2026-08-15 224219" src="https://github.com/user-attachments/assets/e86182ef-89b8-4838-b0de-d34e68619f5a" /><br>
 
 3. **Исправленный шаблон `hosts_task8.tftpl`:**
 
@@ -484,7 +484,7 @@ ${i["name"]} ansible_host=${i["network_interface"][0]["nat_ip_address"] platform
    %{ endfor ~}
    ```
   
-![Успешный рендеринг шаблона](task_8_screenshot_3)<br>
+<img width="1227" height="119" alt="Снимок экрана 2026-08-15 224343" src="https://github.com/user-attachments/assets/47194342-a831-4e11-bf54-d80b9b945746" /><br>
 
 ---
 

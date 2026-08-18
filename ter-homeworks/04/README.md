@@ -79,14 +79,14 @@ module "analytics_vm" {
 ### Результаты выполнения
 
 1. Подключение к виртуальной машине по SSH и проверка статуса и конфигурации Nginx (`sudo nginx -t`):  
-![SSH подключение и проверка nginx](task_1_screenshot_1)<br>
+<img width="471" height="55" alt="Снимок экрана 2026-08-16 214012" src="https://github.com/user-attachments/assets/ff2e2002-0e8f-4769-8686-92ab2e1163c1" /><br>
 
 2. Метки (labels) виртуальных машин в консоли Yandex Cloud:  
-![Метки ВМ analytics в консоли YC](task_1_screenshot_2)<br>
-![Метки ВМ marketing в консоли YC](task_1_screenshot_3)<br>
+<img width="601" height="327" alt="Снимок экрана 2026-08-16 214854" src="https://github.com/user-attachments/assets/501a55eb-3150-4114-b0bc-884c2f3abae0" /><br>
+<img width="588" height="323" alt="Снимок экрана 2026-08-16 214918" src="https://github.com/user-attachments/assets/6766479c-0d69-47b2-bdf5-fcae729faa4c" /><br>
 
 3. Вывод состояния модуля `module.marketing_vm` в `terraform console`:  
-![Вывод terraform console](task_1_screenshot_4)<br>
+<img width="507" height="534" alt="Снимок экрана 2026-08-16 215158" src="https://github.com/user-attachments/assets/898c27f7-7a21-47b4-bf8c-c15606a0d353" /><br>
 
 ---
 
@@ -168,7 +168,7 @@ module "vpc_dev" {
 ### Результаты выполнения
 
 1. Вывод информации о созданном модуле `module.vpc_dev` в `terraform console`:  
-![Вывод terraform console для module.vpc_dev](task_2_screenshot_1)<br>
+<img width="412" height="564" alt="Снимок экрана 2026-08-18 164359" src="https://github.com/user-attachments/assets/76c8e467-1740-4143-ac6e-d0bfe4a5b0e9" /><br>
 
 2. Автоматически сгенерированная документация модуля (`./vpc/README.md`):
 Документация сгенерирована командой:
@@ -181,13 +181,13 @@ terraform-docs markdown table --output-file README.md ./vpc
 ## Задание 3
 
 1. Просмотрен текущий список ресурсов в стейте.  
-![Исходный список ресурсов в state](task_3_screenshot_1)<br>
+<img width="541" height="139" alt="Снимок экрана 2026-08-18 172001" src="https://github.com/user-attachments/assets/faf57d0c-69bc-4855-acb0-8fe91593451b" /><br>
 2. Модули `module.vpc_dev`, `module.marketing_vm` и `module.analytics_vm` полностью удалены из стейта.  
-![Удаление ресурсов из state](task_3_screenshot_2)<br>
+<img width="673" height="241" alt="Снимок экрана 2026-08-18 172654" src="https://github.com/user-attachments/assets/d7510e75-4a74-4227-b539-e7975c340de8" /><br>
 3. Все ресурсы импортированы обратно по их ID в Yandex Cloud.  
-![Импорт ресурсов](task_3_screenshot_3)<br>
+<img width="554" height="93" alt="Снимок экрана 2026-08-18 173626" src="https://github.com/user-attachments/assets/7604e4b5-f757-4573-8710-0b395e5ce3fb" /><br>
 4. Выполнена проверка через `terraform plan`. Значимых изменений и пересоздания инфраструктуры нет (`0 to add, 2 to change, 0 to destroy`).  
-![Результат terraform plan после импорта](task_3_screenshot_4)
+<img width="584" height="408" alt="Снимок экрана 2026-08-18 173724" src="https://github.com/user-attachments/assets/ee3120de-7359-4d55-8e8c-0cae39151a0b" /><br>
 
 ### Выполненные команды
 
@@ -220,12 +220,12 @@ terraform plan
 1. Модуль `vpc` модифицирован для динамического создания произвольного количества подсетей в различных зонах доступности через переменную типа `list(object)` с использованием цикла `for_each`.
 2. Входные параметры и код корневого модуля обновлены для передачи списка подсетей (`ru-central1-a`, `ru-central1-b`, `ru-central1-d`).
 3. При первой попытке выполнения `terraform apply` были успешно созданы новые подсети (`ru-central1-b`, `ru-central1-d`), однако возникла ошибка при попытке удаления и повторного создания подсети `ru-central1-a`, так как к ней были привязаны работающие ВМ, а адресное пространство `10.0.1.0/24` конфликтовало).  
-![Ошибка пересоздания подсети при первом apply](task_4_screenshot_1)<br>
+<img width="998" height="336" alt="Снимок экрана 2026-08-18 181717" src="https://github.com/user-attachments/assets/80e96021-2b81-4669-af58-25f4314668b9" /><br>
 4. Проблема была решена без разрушения инфраструктуры путем миграции ресурса в стейте (`terraform state mv`), после чего повторный запуск `terraform apply` завершился успешно.
 ```bash
 terraform state mv 'module.vpc_dev.yandex_vpc_subnet.subnet' 'module.vpc_dev.yandex_vpc_subnet.subnets["ru-central1-a"]'
 ```
-![Успешный terraform apply после миграции state](task_4_screenshot_2)<br>
+<img width="775" height="562" alt="Снимок экрана 2026-08-18 182220" src="https://github.com/user-attachments/assets/38302cec-cb0a-488d-9b61-b550d8f1cf93" /><br>
 
 ### Исходный код обновленного модуля `vpc`
 
@@ -293,7 +293,7 @@ module "vpc_dev" {
 ```
 
 ### Итоговый список созданных подсетей во всех зонах доступности в консоли Yandex Cloud:  
-![Список подсетей в консоли Yandex Cloud](task_4_screenshot_3)<br>
+<img width="1142" height="131" alt="Снимок экрана 2026-08-18 182459" src="https://github.com/user-attachments/assets/9dfd8e1e-3b3d-4973-904a-ea4a1ae1c2ce" /><br>
 
 ---
 
@@ -377,11 +377,11 @@ module "mysql_db_user" {
 ### Результаты выполнения
 
 1. Создание кластера `example` из одного хоста (`HA = false`), базы `test` и пользователя `app`:  
-![Созданный кластер MySQL](task_5_screenshot_1)<br>
-![Созданный пользователь базы данных](task_5_screenshot_2)<br>
+<img width="570" height="639" alt="Снимок экрана 2026-08-18 201041" src="https://github.com/user-attachments/assets/41ea8c34-03c9-4ff7-a330-52cca7502408" /><br>
+<img width="176" height="134" alt="Снимок экрана 2026-08-18 201205" src="https://github.com/user-attachments/assets/5b63f64c-2bcf-4e3e-a0ec-dda2f1579938" /><br>
 
 2. Масштабирование кластера до 2 хостов (`HA = true`):
-![Кластер с 2 хостами (Master + Replica)](task_5_screenshot_3)<br>
+<img width="807" height="143" alt="Снимок экрана 2026-08-18 202457" src="https://github.com/user-attachments/assets/32eb58ba-6f2a-4c8a-84c9-6f1294cc8931" /><br>
 
 ---
 
@@ -416,10 +416,10 @@ module "s3_bucket" {
 ### Результаты выполнения
 
 1. Создание S3-бакета через точечное применение `terraform apply -target=module.s3_bucket`:  
-![Создание S3 бакета через terraform apply](task_6_screenshot_1)<br>
+<img width="738" height="78" alt="Снимок экрана 2026-08-18 205739" src="https://github.com/user-attachments/assets/74f8d056-2a4e-4396-a22c-88df7e88e261" /><br>
 
 2. Созданный бакет в консоли Yandex Object Storage:  
-![S3 бакет в консоли Yandex Cloud](task_6_screenshot_2)<br>
+<img width="1010" height="209" alt="Снимок экрана 2026-08-18 205909" src="https://github.com/user-attachments/assets/8b1f4d5c-dd8a-42ac-a6a1-d9968564cdb5" /><br>
 
 ---
 
@@ -427,11 +427,11 @@ module "s3_bucket" {
 
 1. Локально развернут контейнер HashiCorp Vault с использованием `docker-compose.yml`.
 2. В веб-интерфейсе Vault создан секрет по пути `secret/example` (`test: congrats!`).  
-![Секрет example в веб-интерфейсе Vault](task_7_screenshot_1)<br>
+<img width="1049" height="589" alt="Снимок экрана 2026-08-18 210815" src="https://github.com/user-attachments/assets/88c951a6-bfe0-4b14-8120-36d1412f8da0" /><br>
 3. С помощью источника данных `data "vault_generic_secret"` секрет прочитан в Terraform и выведен в output через функцию `nonsensitive()`.  
-![Результат terraform apply чтения и создания секрета](task_7_screenshot_2)<br>
+<img width="703" height="199" alt="Снимок экрана 2026-08-18 212430" src="https://github.com/user-attachments/assets/b3eadf07-558e-4fcc-afa2-df47fb3bf4ff" /><br>
 4. С помощью ресурса `vault_kv_secret_v2` средствами Terraform создан новый секрет `secret/terraform_secret`.  
-![Новый секрет в веб-интерфейсе Vault](task_7_screenshot_3)<br>
+<img width="1076" height="592" alt="Снимок экрана 2026-08-18 212828" src="https://github.com/user-attachments/assets/353eb08a-2675-4ee5-a10e-0bf189a00df0" /><br>
 
 ### Исходный код конфигурации
 
@@ -570,4 +570,4 @@ module "marketing_vm" {
 ### Результаты выполнения
 
 Успешное создание виртуальных машин во 2-м модуле на базе параметров сети, полученных из Remote State:
-![Развертывание ВМ через terraform_remote_state](task_8_screenshot_1)
+<img width="433" height="180" alt="Снимок экрана 2026-08-18 223345" src="https://github.com/user-attachments/assets/247f8578-0f0d-4765-bb8e-53695d583e0f" />

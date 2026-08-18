@@ -24,10 +24,24 @@ variable "default_zone" {
   default     = "ru-central1-a"
   description = "https://cloud.yandex.ru/docs/overview/concepts/geo-scope"
 }
+
 variable "default_cidr" {
   type        = list(string)
   default     = ["10.0.1.0/24"]
   description = "https://cloud.yandex.ru/docs/vpc/operations/subnet-create"
+}
+
+variable "subnets_dev" {
+  type = list(object({
+    zone = string
+    cidr = string
+  }))
+  default = [
+    { zone = "ru-central1-a", cidr = "10.0.1.0/24" },
+    { zone = "ru-central1-b", cidr = "10.0.2.0/24" },
+    { zone = "ru-central1-d", cidr = "10.0.3.0/24" }
+  ]
+  description = "Subnets configuration for VPC"
 }
 
 variable "vpc_name" {
@@ -40,6 +54,12 @@ variable "vpc_name" {
 variable "vms_ssh_root_key" {
   type        = string
   description = "SSH public key"
+}
+
+variable "serial_port_enable" {
+  type        = number
+  default     = 1
+  description = "Enable serial console"
 }
 
 variable "vm_image_family" {
@@ -108,4 +128,36 @@ variable "vm_db_name" {
   type        = string
   default     = "netology-develop-platform-db"
   description = "example vm_db_ prefix"
+}
+
+### MySQL Cluster Configuration
+variable "mysql_cluster_config" {
+  type = object({
+    cluster_name = string
+    HA           = bool
+  })
+  default = {
+    cluster_name = "example"
+    HA           = true
+  }
+  description = "MySQL Cluster configuration"
+}
+
+### MySQL Database and User Configuration
+variable "mysql_db_config" {
+  type = object({
+    db_name   = string
+    user_name = string
+  })
+  default = {
+    db_name   = "test"
+    user_name = "app"
+  }
+  description = "MySQL Database and User configuration"
+}
+
+variable "bucket_name" {
+  type        = string
+  default     = "yacuba-tfstate-bucket-2026"
+  description = "Globally unique S3 bucket name"
 }

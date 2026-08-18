@@ -1,3 +1,4 @@
-token  =  ""
+service_account_key_file  =  ""
 cloud_id  = ""
 folder_id = ""
+vms_ssh_root_key = ""

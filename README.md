@@ -14,3 +14,4 @@
 ### Блок «Облачная инфраструктура. Terraform»
 * [Практика 1. Введение в Terraform](./ter-homeworks/01/README.md)
 * [Практика 2. Основы Terraform. Yandex Cloud](./ter-homeworks/02/README.md)
+* [Практика 3. Управляющие конструкции в коде Terraform](./ter-homeworks/03//README.md)

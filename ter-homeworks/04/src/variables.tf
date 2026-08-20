@@ -110,12 +110,6 @@ variable "vm_analytics" {
   description = "Analytics VM configuration"
 }
 
-variable "serial_port_enable" {
-  type        = number
-  default     = 1
-  description = "Enable serial console"
-}
-
 ###example vm_web var
 variable "vm_web_name" {
   type        = string

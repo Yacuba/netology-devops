@@ -12,6 +12,24 @@ terraform {
     }    
   }
   required_version = "~>1.15.0"
+
+  backend "s3" {
+    bucket  = "yacuba-tfstate-bucket-2026"
+    key     = "terraform.tfstate"
+    region  = "ru-central1"
+
+    # Встроенный механизм блокировок (Terraform >= 1.6)
+    use_lockfile = true
+
+    endpoints = {
+      s3 = "https://storage.yandexcloud.net"
+    }
+
+    skip_region_validation      = true
+    skip_credentials_validation = true
+    skip_requesting_account_id  = true
+    skip_s3_checksum            = true
+  }
 }
 
 provider "yandex" {

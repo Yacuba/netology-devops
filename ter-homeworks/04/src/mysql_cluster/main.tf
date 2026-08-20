@@ -1,4 +1,5 @@
 resource "yandex_mdb_mysql_cluster" "cluster" {
+  #checkov:skip=CKV_YC_1:Security group is not required for demo environment
   name        = var.cluster_name
   environment = var.environment
   network_id  = var.network_id

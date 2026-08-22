@@ -13,7 +13,7 @@ docker run --rm -v "$(pwd):/data" -w /data ghcr.io/terraform-linters/tflint
 docker run --rm --tty --volume "$(pwd):/tf" --workdir /tf bridgecrew/checkov --directory /tf --skip-download --framework terraform
 ```
   
-![Chekov](task_1_screenshot_1)
+<img width="308" height="156" alt="Снимок экрана 2026-08-20 162209" src="https://github.com/user-attachments/assets/5fc1d1a7-0f0e-4d63-8a4e-794f5e21ec2d" />
   
 ### 2. Перечень обнаруженных типов ошибок
 
@@ -70,7 +70,7 @@ terraform {
 
 4. Выполнена инициализация и миграция состояния с помощью команды `terraform init -migrate-state`:  
 
-![Успешная миграция состояния в S3 backend](task_2_screenshot_1)
+<img width="571" height="283" alt="Снимок экрана 2026-08-20 173545" src="https://github.com/user-attachments/assets/5aceae01-7260-48b0-bdb6-4bf7d48dc919" />
 
 ### 2. Тестирование механизма блокировки State
 
@@ -79,7 +79,7 @@ terraform {
 
 При попытке запустить параллельный `terraform apply` во втором окне терминала, Terraform вернул ошибку захвата блокировки (HTTP StatusCode: 412 PreconditionFailed от S3 API):  
 
-![Ошибка одновременного доступа к заблокированному state](task_2_screenshot_2)
+<img width="750" height="303" alt="Снимок экрана 2026-08-20 175623" src="https://github.com/user-attachments/assets/92afc230-1916-4384-ab77-e454d45e4dff" />
 
 ### 3. Принудительное снятие блокировки (`force-unlock`)
 
@@ -90,7 +90,7 @@ terraform force-unlock 0ebd263f-4cf8-2acc-6633-b0fbf3fe6ae4
 
 Результат выполнения команды:  
 
-![Успешная принудительная разблокировка состояния terraform force-unlock](task_2_screenshot_3)
+<img width="574" height="188" alt="Снимок экрана 2026-08-20 180007" src="https://github.com/user-attachments/assets/0006fbee-4cd4-4613-ba19-6f25b59d6026" />
 
 ---
 
@@ -151,19 +151,19 @@ variable "ip_list" {
 
 #### Тест 1: Валидация строки IP (корректное значение `192.168.0.1`)  
 
-![Проверка корректного IP-адреса в terraform console](task_4_screenshot_1)
+<img width="135" height="59" alt="Снимок экрана 2026-08-20 202953" src="https://github.com/user-attachments/assets/def1d378-d7a6-442a-b821-d5d8325cc68c" />
 
 #### Тест 2: Валидация строки IP (некорректное значение `192.1658.0.1`)  
 
-![Ошибка валидации некорректного IP-адреса](task_4_screenshot_2)
+<img width="553" height="197" alt="Снимок экрана 2026-08-20 203109" src="https://github.com/user-attachments/assets/a67e3ee8-7989-4665-93a2-8e6d99f1f9a1" />
 
 #### Тест 3: Валидация списка IP (корректный список `["192.168.0.1", "1.1.1.1", "127.0.0.1"]`)  
 
-![Проверка корректного списка IP-адресов в terraform console](task_4_screenshot_3)
+<img width="121" height="106" alt="Снимок экрана 2026-08-20 203217" src="https://github.com/user-attachments/assets/95801cfd-283c-4e22-adc1-3412c8277eb4" />
 
 #### Тест 4: Валидация списка IP (некорректный список с ошибочным адресом)  
 
-![Ошибка валидации некорректного списка IP-адресов](task_4_screenshot_4)
+<img width="571" height="200" alt="Снимок экрана 2026-08-20 203310" src="https://github.com/user-attachments/assets/d444b0e2-e9fb-4ade-af68-9dcb5f8f82bb" />
 
 ---
 
@@ -212,19 +212,19 @@ variable "in_the_end_there_can_be_only_one" {
 
 #### Тест 1: Валидная строка только в нижнем регистре (`"lowercase_only_string"`)  
 
-![Проверка строки в нижнем регистре в terraform console](task_5_screenshot_1)
+<img width="173" height="52" alt="Снимок экрана 2026-08-20 204235" src="https://github.com/user-attachments/assets/98c578fc-5811-46a5-9453-680361ff2fdb" />
 
 #### Тест 2: Ошибка валидации строки с символами верхнего регистра (`"Not_Such_A_Lowercase_String"`)  
 
-![Ошибка валидации строки с символами верхнего регистра](task_5_screenshot_2)
+<img width="555" height="200" alt="Снимок экрана 2026-08-20 204532" src="https://github.com/user-attachments/assets/6ebaa116-f558-4fec-bb0c-2f427bae83c8" />
 
 #### Тест 3: Валидный объект с одним истинным значением (`Dunkan = true, Connor = false`)  
 
-![Проверка объекта с одним значением true в terraform console](task_5_screenshot_3)
+<img width="288" height="118" alt="Снимок экрана 2026-08-20 204611" src="https://github.com/user-attachments/assets/462518fc-fbb4-45a7-936c-78e79be2b2d4" />
 
 #### Тест 4: Ошибка валидации объекта, когда оба значения true (`Dunkan = true, Connor = true`)  
 
-![Ошибка валидации объекта при нарушении правила There can be only one MacLeod](task_5_screenshot_4)
+<img width="556" height="210" alt="Снимок экрана 2026-08-20 204642" src="https://github.com/user-attachments/assets/6cb348db-81cd-4996-95d7-6dabfb70192a" />
 
 ---
 
@@ -307,13 +307,13 @@ fi
 
 Успешное прохождение проверок и развертывание ресурсов:
 
-![Вывод консоли Jenkins при успешном terraform apply](task_6_screenshot_1)
+<img width="856" height="797" alt="Снимок экрана 2026-08-22 163524" src="https://github.com/user-attachments/assets/d3917aa8-c6be-4cde-8d79-bcb5f646db37" />
 
 #### Шаг 2: Уничтожение инфраструктуры (`Action = destroy`)  
 
 Полная очистка и удаление всех созданных ресурсов:
 
-![Вывод консоли Jenkins при успешном terraform destroy](task_6_screenshot_2)
+<img width="869" height="799" alt="Снимок экрана 2026-08-22 163630" src="https://github.com/user-attachments/assets/6ab5f4ec-8ef7-4bb0-ae29-58b0f295ac24" />
 
 ---
 
@@ -407,4 +407,4 @@ output "backend_config_example" {
 
 ### 2. Результаты применения
 
-![Вывод terraform apply и outputs модуля tfstate_backend](task_7_screenshot_1)
+<img width="429" height="537" alt="Снимок экрана 2026-08-22 172848" src="https://github.com/user-attachments/assets/82c626b0-d692-41b7-80e7-0a117f576a3a" />

@@ -16,3 +16,4 @@
 * [Практика 2. Основы Terraform. Yandex Cloud](./ter-homeworks/02/README.md)
 * [Практика 3. Управляющие конструкции в коде Terraform](./ter-homeworks/03//README.md)
 * [Практика 4. Продвинутые методы работы с Terraform](./ter-homeworks/04//README.md)
+* [Практика 5. Использование Terraform в команде](./ter-homeworks/05//README.md)

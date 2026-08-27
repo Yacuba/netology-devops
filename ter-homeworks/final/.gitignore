@@ -1,0 +1,22 @@
+# Terraform files
+*.tfstate
+*.tfstate.*
+*.tfvars
+!example.tfvars
+personal.auto.tfvars
+.terraform/
+.terraform.lock.hcl
+
+# Sensitive keys and secrets
+*.json
+*.pem
+*.key
+id_ed25519*
+id_rsa*
+
+# OS / IDE
+.DS_Store
+.vscode/
+.idea/
+__pycache__/
+*.pyc

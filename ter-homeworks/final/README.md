@@ -75,7 +75,7 @@ provider "yandex" {
 
 Инициализация Terraform выполнена успешно: провайдеры загружены, подключение к удаленному S3 бэкенду установлено:  
 
-![Инициализация Terraform с Remote S3 Backend](task_0_screenshot_1)
+<img width="570" height="382" alt="Снимок экрана 2026-08-27 151123" src="https://github.com/user-attachments/assets/221097be-fc35-4977-bbf9-c44a9c924af4" />
 
 ---
 
@@ -104,7 +104,7 @@ resource "yandex_vpc_subnet" "subnet" {
 }
 ```
 
-![Созданные VPC и подсеть в Yandex Cloud](task_1_screenshot_1)
+<img width="857" height="466" alt="Снимок экрана 2026-08-27 155829" src="https://github.com/user-attachments/assets/427d9d9e-27ef-468a-9610-9260f804eb94" />
 
 ---
 
@@ -149,7 +149,7 @@ resource "yandex_vpc_security_group" "sg" {
 }
 ```
 
-![Правила группы безопасности в Yandex Cloud](task_1_screenshot_2)
+<img width="969" height="834" alt="Снимок экрана 2026-08-27 155926" src="https://github.com/user-attachments/assets/7fc89433-7d4f-49f0-9866-dde7e7fe5578" />
 
 ---
 
@@ -166,7 +166,7 @@ resource "yandex_container_registry" "registry" {
 }
 ```
 
-![Созданный Yandex Container Registry](task_1_screenshot_3)
+<img width="461" height="132" alt="Снимок экрана 2026-08-27 160008" src="https://github.com/user-attachments/assets/d7cff51a-3b0d-44a6-a176-1a1690bdfc34" />
 
 ---
 
@@ -219,7 +219,7 @@ resource "yandex_mdb_mysql_user" "user" {
 }
 ```
 
-![Работающий кластер Managed MySQL в Yandex Cloud](task_1_screenshot_5)
+<img width="504" height="387" alt="Снимок экрана 2026-08-27 160142" src="https://github.com/user-attachments/assets/6cc81e42-d1bc-439d-a290-fb1ea1ddd8cd" />
 
 ---
 
@@ -328,11 +328,11 @@ resource "yandex_compute_instance" "web" {
 
 Виртуальная машина успешно создана в подсети `final-prod-subnet-ru-central1-a` и привязана к группе безопасности `final-prod-sg`:
 
-![Созданная виртуальная машина с привязанной группой безопасности](task_2_screenshot_1)
+<img width="624" height="433" alt="Снимок экрана 2026-08-27 161819" src="https://github.com/user-attachments/assets/1a8a6a6c-5259-4a93-b969-f067218215bd" />
 
 После подключения к ВМ по SSH подтверждена корректная работа установленного через `cloud-init` Docker Engine и Docker Compose:
 
-![Проверка установки Docker и Docker Compose на ВМ](task_2_screenshot_2)
+<img width="644" height="122" alt="Снимок экрана 2026-08-27 161842" src="https://github.com/user-attachments/assets/060ac117-cc4d-40f9-a952-3baaedac67a9" />
 
 ---
 
@@ -398,11 +398,11 @@ docker buildx build \
   --push .
 ```
 
-![Сборка и push Docker-образа в Yandex Container Registry](task_3_screenshot_1)
+<img width="1028" height="531" alt="Снимок экрана 2026-08-27 170127" src="https://github.com/user-attachments/assets/a51105e1-abba-4a1c-84eb-e60b362a71ba" />
 
 Опубликованный Docker-образ в реестре Yandex Cloud:
 
-![Docker-образ web-app с тегами v1.0.0 и latest в Yandex Container Registry](task_3_screenshot_2)
+<img width="888" height="265" alt="Снимок экрана 2026-08-27 170211" src="https://github.com/user-attachments/assets/954c8d76-e129-4dc2-bdd2-1d1277e0943e" />
 
 ---
 
@@ -444,11 +444,11 @@ networks:
 
 Стек сервисов запущен на виртуальной машине с помощью Docker Compose:
 
-![Статус запущенных контейнеров и логи сервиса web](task_4_screenshot_1)
+<img width="1193" height="207" alt="Снимок экрана 2026-08-27 181138" src="https://github.com/user-attachments/assets/8a98d223-0621-4e53-ad40-5022f5ca8000" />
 
 Веб-приложение успешно принимает клиентские запросы через цепочку `Пользователь → Nginx (8090) → HAProxy (8080) → FastAPI (5000)`:
 
-![Ответ веб-приложения в браузере](task_4_screenshot_2)
+<img width="356" height="97" alt="Снимок экрана 2026-08-27 181421" src="https://github.com/user-attachments/assets/a09311a4-f0fb-427e-aca1-b7732c0c3d5d" />
 
 ---
 
@@ -456,7 +456,7 @@ networks:
 
 Проверка содержимого таблицы `requests` выполнена в веб-интерфейсе WebSQL консоли Yandex Cloud. В базе данных зафиксированы записи с временем запросов и внешними IP-адресами клиентов:
 
-![Записи клиентских запросов в таблице requests кластера Managed MySQL](task_4_screenshot_3)
+<img width="626" height="642" alt="Снимок экрана 2026-08-27 182010" src="https://github.com/user-attachments/assets/68a5b525-ed60-4d70-9d1d-ec501fd39647" />
 
 ---
 
@@ -496,4 +496,4 @@ data "yandex_lockbox_secret_version" "mysql_password_data" {
 }
 ```
 
-![Секрет с паролем базы данных в Yandex Lockbox](task_1_screenshot_4)
+<img width="728" height="545" alt="Снимок экрана 2026-08-27 160107" src="https://github.com/user-attachments/assets/be74b4e5-1142-4e2c-890d-6a866301d930" />

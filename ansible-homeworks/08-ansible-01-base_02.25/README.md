@@ -6,7 +6,7 @@
 ```bash
 ansible --version
 ```
-![Версия Ansible](task_0_screenshot_1)
+<img width="796" height="171" alt="Снимок экрана 2026-08-29 170036" src="https://github.com/user-attachments/assets/b5fc16b8-69a6-459d-b1e2-2410c70f277a" />
 
 ---
 
@@ -18,7 +18,7 @@ ansible --version
 ```bash
 ansible-playbook site.yml -i inventory/test.yml
 ```
-![Запуск playbook на тестовом окружении test.yml](task_1_screenshot_1)
+<img width="816" height="327" alt="Снимок экрана 2026-08-29 170102" src="https://github.com/user-attachments/assets/ae3a1498-e85b-4253-8aea-619d6dbbdf96" />
 
 **Результат:**
 Значение факта `some_fact` для хоста `localhost` равно `12`. Значение берется из файла общих переменных `group_vars/all/examp.yml`.
@@ -31,7 +31,7 @@ ansible-playbook site.yml -i inventory/test.yml
 ```bash
 ansible-playbook site.yml -i inventory/test.yml
 ```
-![Проверка изменения переменной all default fact](task_2_screenshot_1)
+<img width="810" height="331" alt="Снимок экрана 2026-08-29 171131" src="https://github.com/user-attachments/assets/4ee1ce80-5b1c-4b44-acec-42884153fcda" />
 
 **Результат:**
 Значение факта `some_fact` для хоста `localhost` успешно обновилось и выводится как `all default fact`.
@@ -44,7 +44,7 @@ docker run -d --name ubuntu pycontribs/ubuntu:latest sleep 1d
 docker run -d --name centos7 pycontribs/centos:7 sleep 1d
 docker ps
 ```
-![Запущенные Docker-контейнеры для prod.yml](task_3_screenshot_1)
+<img width="801" height="68" alt="Снимок экрана 2026-08-29 171826" src="https://github.com/user-attachments/assets/e121a430-3789-4c91-b531-03ff3c6cd0fe" />
 
 **Результат:**
 Контейнеры `ubuntu` и `centos7` успешно запущены и готовы к подключению по транспорту `docker`.
@@ -55,7 +55,7 @@ docker ps
 ```bash
 ansible-playbook site.yml -i inventory/prod.yml
 ```
-![Запуск playbook на окружении prod.yml](task_4_screenshot_1)
+<img width="809" height="468" alt="Снимок экрана 2026-08-29 172347" src="https://github.com/user-attachments/assets/d8eeee2f-9798-49c7-8133-ea63fea21ef2" />
 
 **Результат:**
 Получены следующие значения переменной `some_fact`:
@@ -72,7 +72,7 @@ ansible-playbook site.yml -i inventory/prod.yml
 ```bash
 ansible-playbook site.yml -i inventory/prod.yml
 ```
-![Повторный запуск playbook после обновления group_vars](task_6_screenshot_1)
+<img width="1320" height="327" alt="Снимок экрана 2026-08-29 190319" src="https://github.com/user-attachments/assets/b12743f9-77b8-4cd1-9faf-a635037d6548" />
 
 **Результат:**
 Для каждого хоста успешно применились специфичные для его группы переменные:
@@ -86,7 +86,7 @@ ansible-playbook site.yml -i inventory/prod.yml
 ansible-vault encrypt group_vars/deb/examp.yml
 ansible-vault encrypt group_vars/el/examp.yml
 ```
-![Зашифрованные файлы group_vars](task_7_screenshot_1)
+<img width="572" height="273" alt="Снимок экрана 2026-08-29 173801" src="https://github.com/user-attachments/assets/2f2a194a-2833-4462-ae0e-ed78eb9fba2d" />
 
 ### Задание 8
 
@@ -94,7 +94,7 @@ ansible-vault encrypt group_vars/el/examp.yml
 ```bash
 ansible-playbook site.yml -i inventory/prod.yml --ask-vault-pass
 ```
-![Запуск с паролем Vault](task_8_screenshot_1)
+<img width="813" height="481" alt="Снимок экрана 2026-08-29 173820" src="https://github.com/user-attachments/assets/337e5708-8220-40db-9f58-82c9dc10f0e7" />
 
 **Результат:**
 Ansible запросил пароль хранилища, расшифровал переменные на лету и успешно выполнил задачи плейбука.
@@ -105,7 +105,7 @@ Ansible запросил пароль хранилища, расшифровал
 ```bash
 ansible-doc -t connection -l | grep -w "local"
 ```
-![Плагин подключения local](task_9_screenshot_1)
+<img width="416" height="53" alt="Снимок экрана 2026-08-29 180137" src="https://github.com/user-attachments/assets/c1b5dfec-82a6-490b-a33b-fe5b72c11b77" />
 
 **Результат:**
 Для управления локальным хостом (`control node`) выбран плагин `ansible.builtin.local` (*execute on controller*).
@@ -135,7 +135,7 @@ local:
 ```bash
 ansible-playbook site.yml -i inventory/prod.yml --ask-vault-pass
 ```
-![Итоговый запуск playbook на окружении prod.yml](task_11_screenshot_1)
+<img width="828" height="620" alt="Снимок экрана 2026-08-29 180556" src="https://github.com/user-attachments/assets/7478b1ba-f1f1-492a-b35d-ecc38d41dfbe" />
 
 **Результат:**
 Все факты `some_fact` определены корректно согласно приоритету и иерархии `group_vars`:
@@ -153,7 +153,7 @@ ansible-playbook site.yml -i inventory/prod.yml --ask-vault-pass
 ```bash
 ansible-vault decrypt group_vars/deb/examp.yml group_vars/el/examp.yml
 ```
-![Расшифровка файлов переменных](task_opt_1_screenshot_1)
+<img width="559" height="136" alt="Снимок экрана 2026-08-29 181439" src="https://github.com/user-attachments/assets/bce2ce94-7cd8-46dc-b0b3-f9049d81bfae" />
 
 ### Задание 2
 
@@ -161,7 +161,7 @@ ansible-vault decrypt group_vars/deb/examp.yml group_vars/el/examp.yml
 ```bash
 ansible-vault encrypt_string 'PaSSw0rd' --name 'some_fact'
 ```
-![Шифрование отдельной строки](task_opt_2_screenshot_1)
+<img width="639" height="138" alt="Снимок экрана 2026-08-29 181903" src="https://github.com/user-attachments/assets/6f8040d5-9b96-456f-a674-234b855a4853" />
 
 Полученный зашифрованный блок помещен в файл `group_vars/all/examp.yml`.
 
@@ -171,7 +171,7 @@ ansible-vault encrypt_string 'PaSSw0rd' --name 'some_fact'
 ```bash
 ansible-playbook site.yml -i inventory/prod.yml --ask-vault-pass
 ```
-![Запуск playbook со зашифрованной строкой](task_opt_3_screenshot_1)
+<img width="811" height="620" alt="Снимок экрана 2026-08-29 182009" src="https://github.com/user-attachments/assets/085ede15-c068-4480-b576-304246a745d0" />
 
 **Результат:**
 - Для `centos7` и `ubuntu` применились значения из их собственных (расшифрованных) файлов переменных (`el default fact` и `deb default fact`);
@@ -192,7 +192,7 @@ ansible-playbook site.yml -i inventory/prod.yml --ask-vault-pass
 ```bash
 ansible-playbook site.yml -i inventory/prod.yml --ask-vault-pass
 ```
-![Запуск playbook с группой fedora](task_opt_4_screenshot_1)
+<img width="814" height="772" alt="Снимок экрана 2026-08-29 182956" src="https://github.com/user-attachments/assets/826b62f4-f6e6-469e-a6aa-d7d72750080f" />
 
 **Результат:**
 Все 4 хоста успешно обработаны, факт `some_fact` для хоста `fedora` равен `"fedora default fact"`.
@@ -228,7 +228,7 @@ echo "=== Script finished successfully ==="
 ```bash
 ./run.sh
 ```
-![Автоматический запуск окружения и playbook скриптом run.sh](task_opt_5_screenshot_1)
+<img width="817" height="194" alt="Снимок экрана 2026-08-29 185558" src="https://github.com/user-attachments/assets/0497b6c8-083f-4720-a038-36700b3188fa" />
 
 **Результат:**
 Скрипт автоматически развернул окружение из трёх контейнеров, передал пароль в Ansible Vault, выполнил плейбук на всех 4 целевых хостах и корректно очистил ресурсы.

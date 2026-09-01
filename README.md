@@ -18,3 +18,6 @@
 * [Практика 4. Продвинутые методы работы с Terraform](./ter-homeworks/04//README.md)
 * [Практика 5. Использование Terraform в команде](./ter-homeworks/05//README.md)
 * [Итоговый проект. Облачная инфраструктура. Terraform](./ter-homeworks/final/README.md)
+
+### Блок «Система управления конфигурациями»
+* [Практика 1. Введение в Ansible](./ansible-homeworks/08-ansible-01-base_02.25/README.md)

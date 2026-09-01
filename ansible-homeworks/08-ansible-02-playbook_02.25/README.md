@@ -76,7 +76,7 @@ ansible-lint site.yml
 
 Линтер успешно прошел валидацию без ошибок и предупреждений (`0 failure(s), 0 warning(s)`):
 
-![Image](task_5_screenshot_1)
+<img width="966" height="51" alt="Снимок экрана 2026-09-01 175254" src="https://github.com/user-attachments/assets/915431ef-4b81-402b-9481-e52b15ea376b" />
 
 ---
 
@@ -89,7 +89,7 @@ ansible-playbook -i inventory/prod.yml site.yml --check
 
 В режиме dry-run модули загрузки файлов (`get_url`) не сохраняют бинарные артефакты на диск физически. Из-за этого последующая задача пакетного менеджера (`dnf`) сообщает об отсутствии локальных RPM-файлов на хосте. Это ожидаемое поведение Ansible при проверке зависимых цепочек задач:
 
-![Image](task_6_screenshot_1)
+<img width="1477" height="571" alt="Снимок экрана 2026-09-01 175806" src="https://github.com/user-attachments/assets/43fc9c96-4175-48ca-9773-737f64ef2076" />
 
 ---
 
@@ -102,7 +102,7 @@ ansible-playbook -i inventory/prod.yml site.yml --diff
 
 Все задачи успешно выполнены. ClickHouse и Vector установлены, сконфигурированы и запущены. Механизм `block/rescue` штатно перехватил платформозависимый пакет ClickHouse (`rescued=1`), а хэндлеры применили конфигурацию:
 
-![Image](task_7_screenshot_1)
+<img width="829" height="202" alt="Снимок экрана 2026-09-01 182042" src="https://github.com/user-attachments/assets/d6ba88b5-e685-44d8-aef1-0e6b47481eaf" />
 
 ---
 
@@ -115,4 +115,4 @@ ansible-playbook -i inventory/prod.yml site.yml --diff
 
 Playbook полностью идемпотентен: повторный прогон завершился со статусом `changed=0` и `failed=0` для всех хостов инвентаря:
 
-![Image](task_8_screenshot_1)
+<img width="813" height="372" alt="Снимок экрана 2026-09-01 182257" src="https://github.com/user-attachments/assets/24d8d83b-2726-4206-889f-2dd13ccd773f" />

@@ -1,0 +1,17 @@
+# Configuration for Vector (Jinja2 Template)
+data_dir: "{{ vector_data_dir }}"
+
+sources:
+  dummy_logs:
+    type: demo_logs
+    format: json
+    interval: 1.0
+
+sinks:
+  console:
+    type: console
+    inputs:
+      - dummy_logs
+    encoding:
+      codec: json
+      

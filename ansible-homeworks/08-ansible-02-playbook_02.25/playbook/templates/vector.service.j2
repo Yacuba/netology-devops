@@ -1,0 +1,14 @@
+[Unit]
+Description=Vector Service
+Documentation=https://vector.dev
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=exec
+ExecStart=/usr/bin/vector --config {{ vector_config_dir }}/vector.yaml
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

@@ -8,7 +8,7 @@
 * `vector` (2 vCPU, 2 ГБ RAM, 15 ГБ HDD, IP: `51.250.82.75`)
 * `lighthouse` (2 vCPU, 2 ГБ RAM, 15 ГБ HDD, IP: `93.77.184.23`)
 
-![Image](task_1_screenshot_1)
+<img width="1824" height="204" alt="Снимок экрана 2026-09-03 172535" src="https://github.com/user-attachments/assets/e2eace38-87bc-4ff4-9b01-d5a025d6fe30" />
 
 ### 2. Настройка inventory и проверка доступности хостов
 Файл `playbook/inventory/prod.yml` был актуализирован реальными IP-адресами виртуальных машин в Yandex Cloud.
@@ -18,7 +18,7 @@
 ansible -i inventory/prod.yml all -m ping
 ```
 
-![Image](task_2_screenshot_1)
+<img width="433" height="377" alt="Снимок экрана 2026-09-03 174307" src="https://github.com/user-attachments/assets/c7a1a7a9-793c-4af5-9bfa-136bebbbf271" />
 
 ### 3. Линтинг плейбука (ansible-lint)
 Плейбук `site.yml` был проверен утилитой `ansible-lint`:
@@ -27,7 +27,7 @@ ansible-lint site.yml
 ```
 Проверка успешно пройдена без ошибок и предупреждений.
 
-![Image](task_5_screenshot_1)
+<img width="972" height="53" alt="Снимок экрана 2026-09-03 175906" src="https://github.com/user-attachments/assets/729ce5d4-cfa4-4147-9352-b4f5ddcc6fc2" />
 
 ### 4. Тестовый запуск с флагом --check
 Выполнен пробный запуск сценария в режиме симуляции:
@@ -36,7 +36,7 @@ ansible-playbook -i inventory/prod.yml site.yml --check
 ```
 Как и ожидалось, на шаге установки пакетов ClickHouse модуль `dnf` завершился с ошибкой отсутствия файлов в `/tmp`. Это связано с тем, что в режиме dry-run предшествующий модуль `get_url` лишь имитирует загрузку дистрибутивов без их фактического сохранения на диск целевого хоста.
 
-![Image](task_6_screenshot_1)
+<img width="1560" height="297" alt="Снимок экрана 2026-09-03 191338" src="https://github.com/user-attachments/assets/4334171e-9f11-466b-b0f4-7f3cfdfbbe16" />
 
 ### 5. Применение плейбука с флагом --diff
 Плейбук был успешно применен на окружении `prod.yml`:
@@ -49,10 +49,10 @@ ansible-playbook -i inventory/prod.yml site.yml --diff
 3. На хосте `lighthouse-01` установлен веб-сервер Nginx, скачана и распакована веб-статика LightHouse, настроена конфигурация виртуального хоста и запущен Nginx.
 
 Результат выполнения (PLAY RECAP):  
-![Image](task_7_screenshot_1)
+<img width="823" height="92" alt="Снимок экрана 2026-09-03 192009" src="https://github.com/user-attachments/assets/f712cf6f-0281-4833-9903-54f62f5fcdbf" />
 
 Проверка доступности веб-интерфейса LightHouse через браузер по внешнему IP (`http://93.77.184.23/`):  
-![Image](task_7_screenshot_2)
+<img width="446" height="175" alt="Снимок экрана 2026-09-03 192359" src="https://github.com/user-attachments/assets/715db603-149c-4b17-9940-356a29e50c11" />
 
 ### 6. Проверка идемпотентности (--diff)
 Был выполнен повторный запуск плейбука для подтверждения идемпотентности:
@@ -61,7 +61,7 @@ ansible-playbook -i inventory/prod.yml site.yml --diff
 ```
 Все задачи вернули статус `ok`, количество изменений `changed=0` по всем хостам.
 
-![Image](task_8_screenshot_1)
+<img width="817" height="83" alt="Снимок экрана 2026-09-03 193049" src="https://github.com/user-attachments/assets/9dfac802-acbd-4553-a300-0fec51785a3f" />
 
 ---
 

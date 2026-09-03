@@ -21,3 +21,4 @@
 
 ### Блок «Система управления конфигурациями»
 * [Практика 1. Введение в Ansible](./ansible-homeworks/08-ansible-01-base_02.25/README.md)
+* [Практика 2. Работа с Playbook](./ansible-homeworks/08-ansible-02-playbook_02.25/README.md)

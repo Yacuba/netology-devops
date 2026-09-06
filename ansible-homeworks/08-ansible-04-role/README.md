@@ -13,7 +13,7 @@ ssh -T git@github.com ; \
 curl -s https://api.github.com/users/Yacuba/repos | grep '"name": ".*-role"'
 ```
 
-![Image](task_1_screenshot_1)
+<img width="617" height="86" alt="Снимок экрана 2026-09-05 174938" src="https://github.com/user-attachments/assets/2c2e4503-20ba-42b7-accc-0f35dbd5395b" />
 
 ---
 
@@ -39,7 +39,7 @@ ansible-galaxy install -r requirements.yml -p roles && ls -la roles/clickhouse/
 
 Роль версии `1.13` была успешно скачана и распакована в каталог `playbook/roles/clickhouse`.
 
-![Image](task_2_screenshot_1)
+<img width="832" height="343" alt="Снимок экрана 2026-09-06 133148" src="https://github.com/user-attachments/assets/d5564770-a421-425b-8ede-93e5236d8d1e" />
 
 ### 3. Инициализация роли vector-role
 С помощью команды `ansible-galaxy role init vector-role` был сформирован стандартный каркас роли внутри каталога `playbook/roles/`.
@@ -58,7 +58,7 @@ ansible-galaxy install -r requirements.yml -p roles && ls -la roles/clickhouse/
 
 Структура созданной роли:
 
-![Image](task_3_screenshot_1)
+<img width="227" height="326" alt="Снимок экрана 2026-09-06 135136" src="https://github.com/user-attachments/assets/d5bd39e6-4fe1-438b-a3f4-da056c6f3abf" />
 
 ### 6. Создание, тестирование и публикация роли vector-role
 В корне роли был создан подробный `README.md`, описывающий назначение, требования, переменные по умолчанию и пример вызова плейбука.
@@ -78,7 +78,7 @@ git remote add origin git@github.com:Yacuba/vector-role.git
 git push -u origin main --tags
 ```
 
-![Image](task_4_screenshot_1)
+<img width="421" height="169" alt="Снимок экрана 2026-09-06 142741" src="https://github.com/user-attachments/assets/cdf6b90c-fd1f-403a-91f6-b28cd4596b82" />
 
 ### 7. Создание, тестирование и публикация роли lighthouse-role
 По правилу «одна роль настраивает один продукт» логика была строго разделена:
@@ -87,7 +87,7 @@ git push -u origin main --tags
 
 Структура каталогов роли:
 
-![Image](task_5_screenshot_1)
+<img width="210" height="308" alt="Снимок экрана 2026-09-06 145622" src="https://github.com/user-attachments/assets/78f44013-fa38-42cb-b81d-d9565110de77" />
 
 Разделение конфигураций:
 * **`defaults/main.yml`** - переопределяемые параметры (`lighthouse_version`, `lighthouse_url`, `lighthouse_dir`, `lighthouse_port`, `lighthouse_server_name`).
@@ -109,7 +109,7 @@ git remote add origin git@github.com:Yacuba/lighthouse-role.git
 git push -u origin main --tags
 ```
 
-![Image](task_6_screenshot_1)
+<img width="422" height="170" alt="Снимок экрана 2026-09-06 152157" src="https://github.com/user-attachments/assets/ae4c8088-ba8a-42b8-882d-cbf934c1463a" />
 
 ### 8. Добавление ролей в requirements.yml
 Все три роли (внешняя роль ClickHouse и две собственные роли с тегами версии `1.0.0`) были объединены в файле `playbook/requirements.yml`:
@@ -137,7 +137,7 @@ git push -u origin main --tags
 ansible-galaxy install -r requirements.yml -p roles --force
 ```
 
-![Image](task_8_screenshot_1)
+<img width="907" height="190" alt="Снимок экрана 2026-09-06 153410" src="https://github.com/user-attachments/assets/c4746ac0-f84d-427c-9ac4-6bdcde79b15a" />
 
 ### 9. Переработка playbook на использование roles и запуск на чистом окружении
 Основной сценарий `site.yml` был переработан на модульную архитектуру с использованием ролей и совмещением их с задачами (`pre_tasks` / `post_tasks`):
@@ -158,7 +158,7 @@ ansible-galaxy install -r requirements.yml -p roles --force
 ansible-lint site.yml
 ```
 
-![Image](task_9_screenshot_1)
+<img width="985" height="52" alt="Снимок экрана 2026-09-06 160009" src="https://github.com/user-attachments/assets/4f4ab642-4d20-4a7c-bbbe-86b51a88c992" />
 
 #### Применение плейбука:
 Для исключения влияния артефактов предыдущих тестов виртуальные машины в Yandex Cloud были пересозданы с нуля. Плейбук успешно применился ко всему окружению:
@@ -166,7 +166,7 @@ ansible-lint site.yml
 ansible-playbook -i inventory/prod.yml site.yml
 ```
 
-![Image](task_9_screenshot_2)
+<img width="821" height="85" alt="Снимок экрана 2026-09-06 163920" src="https://github.com/user-attachments/assets/5c4db43a-948b-430a-a8a8-039cafedc3b0" />
 
 #### Проверка идемпотентности:
 Повторный запуск плейбука подтвердил отсутствие повторных изменений (`changed=0` по всем хостам):
@@ -174,11 +174,11 @@ ansible-playbook -i inventory/prod.yml site.yml
 ansible-playbook -i inventory/prod.yml site.yml
 ```
 
-![Image](task_9_screenshot_3)
+<img width="819" height="85" alt="Снимок экрана 2026-09-06 164539" src="https://github.com/user-attachments/assets/e13773af-344d-4afb-9e41-019f29712add" />
 
 #### Проверка работоспособности через веб-интерфейс:
 Для подтверждения интеграции компонентов веб-интерфейс LightHouse был открыт в браузере по внешнему IP-адресу хоста `lighthouse-01`. 
 
 В интерфейсе настроено подключение к HTTP-интерфейсу СУБД ClickHouse (`http://<CLICKHOUSE_IP>:8123`), проверено соединение и запрошен список баз данных.
 
-![Image](task_9_screenshot_4)
+<img width="1214" height="672" alt="Снимок экрана 2026-09-06 165625" src="https://github.com/user-attachments/assets/9b0872fa-1f79-4644-b639-b67df529677b" />

@@ -1,0 +1,6 @@
+---
+lighthouse_version: "master"
+lighthouse_url: "https://github.com/VKCOM/lighthouse/archive/refs/heads/master.tar.gz"
+lighthouse_dir: "/var/www/lighthouse"
+lighthouse_port: 80
+lighthouse_server_name: "_"

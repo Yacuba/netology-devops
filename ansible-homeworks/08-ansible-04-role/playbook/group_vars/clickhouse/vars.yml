@@ -1,0 +1,7 @@
+---
+clickhouse_version: "22.3.3.44"
+clickhouse_repo_key: "https://packages.clickhouse.com/rpm/stable/repodata/repomd.xml.key"
+clickhouse_listen_host:
+  - "::"
+clickhouse_networks_default:
+  - "::/0"

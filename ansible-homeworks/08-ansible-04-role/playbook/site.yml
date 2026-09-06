@@ -1,0 +1,91 @@
+---
+- name: Install Clickhouse
+  hosts: clickhouse
+  tags:
+    - clickhouse
+  roles:
+    - role: clickhouse
+  post_tasks:
+    - name: Create database logs
+      become: true
+      ansible.builtin.command: "clickhouse-client -h 127.0.0.1 -q 'create database logs;'"
+      register: create_db
+      failed_when: create_db.rc != 0 and create_db.rc != 82
+      changed_when: create_db.rc == 0
+      retries: 5
+      delay: 2
+      until: create_db is not failed
+
+- name: Install Vector
+  hosts: vector
+  tags:
+    - vector
+  roles:
+    - role: vector-role
+
+- name: Install Lighthouse
+  hosts: lighthouse
+  tags:
+    - lighthouse
+  handlers:
+    - name: Reload Nginx service
+      become: true
+      ansible.builtin.service:
+        name: nginx
+        state: reloaded
+
+    - name: Restart Nginx service
+      become: true
+      ansible.builtin.service:
+        name: nginx
+        state: restarted
+
+  pre_tasks:
+    - name: Set SELinux to permissive
+      become: true
+      ansible.builtin.command: setenforce 0
+      register: selinux_result
+      changed_when: false
+      failed_when: false
+
+    - name: Install EPEL repository
+      become: true
+      ansible.builtin.dnf:
+        name: epel-release
+        state: present
+
+    - name: Install Nginx and git
+      become: true
+      ansible.builtin.dnf:
+        name:
+          - nginx
+          - git
+        state: present
+
+    - name: Ensure Nginx configuration directories exist
+      become: true
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        mode: "0755"
+      loop:
+        - /etc/nginx
+        - /etc/nginx/conf.d
+
+    - name: Deploy Nginx main configuration
+      become: true
+      ansible.builtin.template:
+        src: nginx.conf.j2
+        dest: /etc/nginx/nginx.conf
+        mode: "0644"
+      notify: Reload Nginx service
+
+    - name: Ensure Nginx service is started and enabled
+      become: true
+      ansible.builtin.service:
+        name: nginx
+        state: started
+        enabled: true
+
+  roles:
+    - role: lighthouse-role

@@ -1,0 +1,18 @@
+---
+clickhouse:
+  hosts:
+    clickhouse-01:
+      ansible_host: 93.77.179.150
+      ansible_user: yachi
+
+vector:
+  hosts:
+    vector-01:
+      ansible_host: 51.250.13.98
+      ansible_user: yachi
+
+lighthouse:
+  hosts:
+    lighthouse-01:
+      ansible_host: 89.169.147.98
+      ansible_user: yachi

@@ -26,7 +26,7 @@ docker pull aragast/netology:latest
 molecule --version && docker images | grep aragast
 ```
 
-![Image](task_0_screenshot_1)
+<img width="983" height="222" alt="Снимок экрана 2026-09-08 145212" src="https://github.com/user-attachments/assets/256e4fcf-9743-4620-a52f-0b29b2b4836f" />
 
 ---
 
@@ -51,7 +51,7 @@ ERROR Failed to validate .../roles/clickhouse/molecule/centos_7/molecule.yml
 
 Причиной ошибки является несовместимость устаревшей схемы Molecule 2/3 со строгой валидацией актуальной версии Molecule 26.x. Подобное поведение является штатным и демонстрирует эволюцию формата конфигураций Molecule.
 
-![Image](task_1_screenshot_1)
+<img width="1093" height="115" alt="Снимок экрана 2026-09-08 151204" src="https://github.com/user-attachments/assets/21620abf-6ff9-40bd-b6ed-979237db43c5" />
 
 #### 2. Инициализация сценария Molecule для vector-role
 В каталог `08-ansible-05-testing/roles/` был склонирован рабочий репозиторий роли [vector-role](https://github.com/Yacuba/vector-role):
@@ -67,7 +67,7 @@ git clone git@github.com:Yacuba/vector-role.git
 molecule init scenario
 ```
 
-![Image](task_1_screenshot_2)
+<img width="1164" height="680" alt="Снимок экрана 2026-09-08 152807" src="https://github.com/user-attachments/assets/4b4f458d-48b8-412c-97fe-9ed1721cf469" />
 
 #### 3. Настройка мультиплатформенного тестирования и устранение ошибок
 В конфигурационный файл `molecule/default/molecule.yml` были добавлены две платформы: `oraclelinux:8` и `ubuntu:latest`:
@@ -113,11 +113,11 @@ scenario:
 1. Утилита `ansible-compat` отклонила имя `Yacuba.vector` из-за использования заглавной буквы в авторе. В `meta/main.yml` было явно задано пространство имен `namespace: yacuba` и имя `vector` в нижнем регистре, а в `molecule/default/converge.yml` прописан вызов по FQRN (`yacuba.vector`).
 2. Контейнеры были успешно развернуты драйвером Docker.
 
-![Image](task_1_screenshot_3)
+<img width="1016" height="302" alt="Снимок экрана 2026-09-09 183718" src="https://github.com/user-attachments/assets/f3459f43-8c5e-4e50-b32c-8dab766ffe8e" />
 
 3. В стандартном Docker-образе `ubuntu:latest` отсутствует работающий демон `systemd`. Модуль `ansible.builtin.service` пытался найти SysVinit-скрипт `/etc/init.d/vector`, завершаясь ошибкой `Could not find the requested service vector: `. В то же время на `oraclelinux8` служба запустилась успешно благодаря запуску контейнера с `/usr/sbin/init`.
 
-![Image](task_1_screenshot_4)
+<img width="838" height="347" alt="Снимок экрана 2026-09-09 185444" src="https://github.com/user-attachments/assets/2e0ca647-c23e-4210-9f06-373b488da04e" />
 
 Для обеспечения совместимости как с полноценными виртуальными машинами, так и с изолированными контейнерами без init-системы, в таску запуска службы (`tasks/main.yml`) и хендлер (`handlers/main.yml`) было добавлено условие:
 ```yaml
@@ -126,7 +126,7 @@ when: ansible_service_mgr == 'systemd'
 
 Повторный запуск команды `molecule converge` подтвердил успешное применение роли на обеих платформах и нулевое количество изменений при повторном прогоне (идемпотентность).
 
-![Image](task_1_screenshot_5)
+<img width="860" height="159" alt="Снимок экрана 2026-09-09 190116" src="https://github.com/user-attachments/assets/dd3bd2fe-c2c9-459a-ae99-090281094ea9" />
 
 #### 4. Разработка проверок работоспособности (verify.yml)
 В файл `molecule/default/verify.yml` были включены комплексные проверки состояния развернутого сервиса:
@@ -142,7 +142,7 @@ molecule verify
 
 Все проверки завершились успешно (`failed=0`):
 
-![Image](task_1_screenshot_6)
+<img width="854" height="233" alt="Снимок экрана 2026-09-09 191246" src="https://github.com/user-attachments/assets/5b0aa60f-6299-41ea-8bb1-539192d2e5db" />
 
 #### 5. Полное тестирование жизненного цикла роли (molecule test)
 Был выполнен сквозной прогон сценария тестирования роли на чистых контейнерах:
@@ -152,7 +152,7 @@ molecule test
 
 В рамках сценария успешно отработали все фазы матрицы тестирования: `destroy` -> `syntax` -> `create` -> `converge` -> `idempotence` -> `verify` -> `destroy`.
 
-![Image](task_1_screenshot_7)
+<img width="690" height="208" alt="Снимок экрана 2026-09-09 192758" src="https://github.com/user-attachments/assets/c48d8dc2-9033-4bfa-ba95-a6ce82a48f11" />
 
 #### 6. Семантическое версионирование и публикация релиза
 Все изменения были зафиксированы в Git. Был создан тег **`1.1.0`** и отправлен в удаленный репозиторий [vector-role](https://github.com/Yacuba/vector-role):
@@ -183,7 +183,7 @@ CRITICAL 'molecule/compatibility/molecule.yml' glob failed. Exiting.
 ERROR: InvocationError for command ... molecule test -s compatibility --destroy always
 ```
 
-![Image](task_2_screenshot_1)
+<img width="1020" height="121" alt="Снимок экрана 2026-09-09 195450" src="https://github.com/user-attachments/assets/bbd93904-c1cb-4788-9705-b67227f56dde" />
 
 #### 4. Создание облегченного сценария Molecule с драйвером Podman
 Для быстрой проверки роли в изолированных средах тестирования Tox был разработан легковесный сценарий `molecule/compatibility`:
@@ -197,7 +197,7 @@ molecule test -s compatibility
 ```
 Сценарий отработал штатно, верификация подтвердила успешную установку и валидность Vector.
 
-![Image](task_2_screenshot_2)
+<img width="818" height="130" alt="Снимок экрана 2026-09-10 111046" src="https://github.com/user-attachments/assets/fab2fce9-f5e2-47cf-a6e0-cc30caa08743" />
 
 #### 5. Настройка tox.ini и зависимостей
 В файле `tox.ini` была настроена команда запуска облегченного сценария:
@@ -225,7 +225,7 @@ tox -r
 
 Все 4 тестовые среды (`py37-ansible210`, `py37-ansible30`, `py39-ansible210`, `py39-ansible30`) успешно прошли тестирование:
 
-![Image](task_2_screenshot_3)
+<img width="276" height="94" alt="Снимок экрана 2026-09-10 112520" src="https://github.com/user-attachments/assets/7e989c7a-a1fd-45b8-9290-fb6e7e26e57c" />
 
 #### 7. Семантическое версионирование (Tox)
 Все артефакты (сценарий `molecule/compatibility`, файлы `tox.ini`, `tox-requirements.txt`) были зафиксированы в репозитории [vector-role](https://github.com/Yacuba/vector-role). Был присвоен и опубликован тег **`1.2.0`**.
@@ -257,7 +257,7 @@ molecule test
 
 Тестирование роли завершилось со 100% успехом:
 
-![Image](task_3_screenshot_1)
+<img width="687" height="223" alt="Снимок экрана 2026-09-10 125029" src="https://github.com/user-attachments/assets/6e011b94-1596-4eb4-be10-e017cd947dd3" />
 
 Изменения зафиксированы в репозитории [lighthouse-role](https://github.com/Yacuba/lighthouse-role) с тегом **`1.1.0`**.
 
@@ -296,7 +296,7 @@ molecule test -s stack
 
 Все фазы (`dependency` -> `create` -> `prepare` -> `converge` -> `idempotence` -> `verify` -> `destroy`) завершились со 100% успехом:
 
-![Image](task_3_screenshot_2)
+<img width="894" height="237" alt="Снимок экрана 2026-09-12 121944" src="https://github.com/user-attachments/assets/71790107-18b7-4c64-9a34-e168e0fcc026" />
 
 ### 4. Публикация ролей и версионирование
 

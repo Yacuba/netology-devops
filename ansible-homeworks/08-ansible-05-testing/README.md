@@ -54,7 +54,7 @@ ERROR Failed to validate .../roles/clickhouse/molecule/centos_7/molecule.yml
 <img width="1093" height="115" alt="Снимок экрана 2026-09-08 151204" src="https://github.com/user-attachments/assets/21620abf-6ff9-40bd-b6ed-979237db43c5" />
 
 #### 2. Инициализация сценария Molecule для vector-role
-В каталог `08-ansible-05-testing/roles/` был склонирован рабочий репозиторий роли [vector-role](https://github.com/Yacuba/vector-role):
+В каталог `08-ansible-05-testing/roles/` был склонирован рабочий репозиторий роли [vector-role](https://github.com/Yacuba/vector-role).
 
 ```bash
 git clone git@github.com:Yacuba/vector-role.git
@@ -133,7 +133,7 @@ when: ansible_service_mgr == 'systemd'
 * Наличие и исполняемость бинарного файла `/usr/bin/vector`.
 * Корректность вызова и кода возврата команды `vector --version`.
 * Наличие сгенерированного файла конфигурации `/etc/vector/vector.yaml`.
-* **Валидация конфигурации** средствами самого приложения (`vector validate --config-yaml /etc/vector/vector.yaml`).
+* Валидация конфигурации средствами самого приложения (`vector validate --config-yaml /etc/vector/vector.yaml`).
 * Проверка активного статуса службы (`state: running`) через модуль `service_facts` для платформ с подсистемой `systemd`.
 
 ```bash
@@ -161,8 +161,8 @@ molecule test
 
 #### 1. Подготовка конфигурационных файлов Tox
 В корень репозитория роли `vector-role` были добавлены конфигурационные файлы:
-* `tox.ini` — описание матрицы тестирования для сред Python 3.7 и 3.9 с версиями Ansible 2.10 и 3.0.
-* `tox-requirements.txt` — список зависимостей Python (Molecule, драйвер `molecule_podman`, selinux и сопутствующие библиотеки).
+* `tox.ini` - описание матрицы тестирования для сред Python 3.7 и 3.9 с версиями Ansible 2.10 и 3.0.
+* `tox-requirements.txt` - список зависимостей Python (Molecule, драйвер `molecule_podman`, selinux и сопутствующие библиотеки).
 
 #### 2. Запуск контейнера со специальным сборочным окружением
 Для тестирования в изолированной среде был запущен специализированный контейнер `aragast/netology:latest` в привилегированном режиме с монтированием каталога роли:

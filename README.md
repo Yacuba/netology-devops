@@ -24,3 +24,4 @@
 * [Практика 2. Работа с Playbook](./ansible-homeworks/08-ansible-02-playbook_02.25/README.md)
 * [Практика 3. Использование Ansible](./ansible-homeworks/08-ansible-03-yandex/README.md)
 * [Практика 4. Работа с roles](./ansible-homeworks/08-ansible-04-role/README.md)
+* [Практика 5. Тестирование roles](./ansible-homeworks/08-ansible-05-testing/README.md)

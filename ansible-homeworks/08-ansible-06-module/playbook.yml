@@ -1,0 +1,9 @@
+---
+- name: Test custom module execution
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Ensure test file exists with required content
+      my_own_module:
+        path: /tmp/test_file.txt
+        content: "Hello from my own module!"

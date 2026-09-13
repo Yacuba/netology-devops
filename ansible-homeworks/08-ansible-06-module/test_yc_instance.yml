@@ -1,0 +1,28 @@
+---
+- name: Test yc_instance module execution
+  hosts: localhost
+  gather_facts: false
+  vars:
+    target_state: "{{ vm_state | default('present') }}"
+
+  tasks:
+    - name: Manage Yandex Cloud test instance
+      yc_instance:
+        name: test-ansible-vm
+        zone: ru-central1-a
+        subnet_name: default-ru-central1-a
+        cores: 2
+        memory: 2
+        core_fraction: 20
+        image_family: almalinux-9
+        disk_size: 15
+        ssh_key_path: ~/.ssh/id_ed25519.pub
+        state: "{{ target_state }}"
+      register: vm_result
+
+    - name: Output instance information
+      ansible.builtin.debug:
+        msg:
+          - "Message: {{ vm_result.message }}"
+          - "Changed: {{ vm_result.changed }}"
+          - "Instance: {{ vm_result.instance | default('N/A') }}"

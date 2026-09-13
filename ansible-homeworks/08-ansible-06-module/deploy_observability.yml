@@ -1,0 +1,168 @@
+---
+# ==============================================================================
+# Play 1: Provision infrastructure in Yandex Cloud using custom yc_instance module
+# ==============================================================================
+- name: Provision Observability Infrastructure in Yandex Cloud
+  hosts: localhost
+  gather_facts: false
+  vars:
+    yc_zone: "ru-central1-a"
+    yc_subnet: "default-ru-central1-a"
+    ssh_pub_key: "~/.ssh/id_ed25519.pub"
+    vm_state: "present"
+
+    vms_spec:
+      - name: "clickhouse-01"
+        group: "clickhouse"
+        cores: 2
+        memory: 4
+        disk_size: 20
+      - name: "vector-01"
+        group: "vector"
+        cores: 2
+        memory: 2
+        disk_size: 15
+      - name: "lighthouse-01"
+        group: "lighthouse"
+        cores: 2
+        memory: 2
+        disk_size: 15
+
+  tasks:
+    - name: Create compute instances via yc_instance module
+      my_own_namespace.yandex_cloud_elk.yc_instance:
+        name: "{{ item.name }}"
+        zone: "{{ yc_zone }}"
+        subnet_name: "{{ yc_subnet }}"
+        cores: "{{ item.cores }}"
+        memory: "{{ item.memory }}"
+        core_fraction: 20
+        image_family: "almalinux-9"
+        disk_size: "{{ item.disk_size }}"
+        ssh_key_path: "{{ ssh_pub_key }}"
+        state: "{{ vm_state }}"
+      loop: "{{ vms_spec }}"
+      register: yc_results
+
+    - name: Dynamically register created instances into inventory
+      ansible.builtin.add_host:
+        name: "{{ item.instance.name }}"
+        groups: "{{ item.item.group }}"
+        ansible_host: "{{ item.instance.external_ip }}"
+        ansible_user: yc-user
+        ansible_ssh_private_key_file: "~/.ssh/id_ed25519"
+        ansible_ssh_common_args: "-o StrictHostKeyChecking=no"
+      loop: "{{ yc_results.results }}"
+      when:
+        - vm_state == 'present'
+        - item.instance is defined
+        - item.instance.external_ip is defined
+
+    - name: Wait for SSH accessibility on created instances
+      ansible.builtin.wait_for:
+        host: "{{ item.instance.external_ip }}"
+        port: 22
+        delay: 5
+        timeout: 180
+      loop: "{{ yc_results.results }}"
+      when:
+        - vm_state == 'present'
+        - item.instance is defined
+        - item.instance.external_ip is defined
+
+# ==============================================================================
+# Play 2: Deploy ClickHouse DBMS
+# ==============================================================================
+- name: Deploy ClickHouse DBMS
+  hosts: clickhouse
+  gather_facts: true
+  become: true
+  vars:
+    clickhouse_version: "22.3.3.44"
+    clickhouse_files:
+      - "clickhouse-common-static-{{ clickhouse_version }}.x86_64.rpm"
+      - "clickhouse-server-{{ clickhouse_version }}.noarch.rpm"
+      - "clickhouse-client-{{ clickhouse_version }}.noarch.rpm"
+
+  tasks:
+    - name: Download ClickHouse RPM packages
+      ansible.builtin.get_url:
+        url: "https://packages.clickhouse.com/rpm/stable/{{ item }}"
+        dest: "/tmp/{{ item }}"
+        mode: "0644"
+      loop: "{{ clickhouse_files }}"
+
+    - name: Install ClickHouse packages via DNF
+      ansible.builtin.dnf:
+        name:
+          - "/tmp/clickhouse-common-static-{{ clickhouse_version }}.x86_64.rpm"
+          - "/tmp/clickhouse-server-{{ clickhouse_version }}.noarch.rpm"
+          - "/tmp/clickhouse-client-{{ clickhouse_version }}.noarch.rpm"
+        disable_gpg_check: true
+        state: present
+
+    - name: Configure ClickHouse to listen on all interfaces (for LightHouse access)
+      ansible.builtin.copy:
+        content: |
+          <clickhouse>
+              <listen_host>0.0.0.0</listen_host>
+          </clickhouse>
+        dest: /etc/clickhouse-server/config.d/listen.xml
+        owner: clickhouse
+        group: clickhouse
+        mode: "0644"
+
+    - name: Ensure ClickHouse service is started and enabled
+      ansible.builtin.service:
+        name: clickhouse-server
+        state: restarted
+        enabled: true
+
+    - name: Wait for ClickHouse native port 9000 to be open
+      ansible.builtin.wait_for:
+        host: 127.0.0.1
+        port: 9000
+        delay: 3
+        timeout: 60
+
+    - name: Create logs database in ClickHouse
+      ansible.builtin.command: clickhouse-client -h 127.0.0.1 -q 'create database if not exists logs;'
+      changed_when: false
+
+# ==============================================================================
+# Play 3: Configure Vector agent using custom collection role
+# ==============================================================================
+- name: Deploy Vector Collector
+  hosts: vector
+  gather_facts: true
+  become: true
+  roles:
+    - role: my_own_namespace.yandex_cloud_elk.vector
+
+# ==============================================================================
+# Play 4: Deploy LightHouse Web UI using custom collection role
+# ==============================================================================
+- name: Deploy LightHouse UI
+  hosts: lighthouse
+  gather_facts: true
+  become: true
+  pre_tasks:
+    - name: Install epel-release repository
+      ansible.builtin.dnf:
+        name: epel-release
+        state: present
+
+    - name: Install Nginx web server and git
+      ansible.builtin.dnf:
+        name:
+          - nginx
+          - git
+        state: present
+
+    - name: Ensure Nginx service is started and enabled
+      ansible.builtin.service:
+        name: nginx
+        state: started
+        enabled: true
+  roles:
+    - role: my_own_namespace.yandex_cloud_elk.lighthouse

@@ -8,7 +8,7 @@
 
 Результат проверки версии Ansible в настроенном окружении:
 
-![Image](task_0_screenshot_1)
+<img width="798" height="169" alt="Снимок экрана 2026-09-13 123053" src="https://github.com/user-attachments/assets/3f6fdf8f-3952-467f-acc3-3fa748b7f039" />
 
 ## Основная часть
 
@@ -24,14 +24,14 @@
 
 Проверка модуля выполнена локально в активированном окружении разработки с передачей параметров через JSON-файл:
 
-![Image](task_4_screenshot_1)
+<img width="1444" height="205" alt="Снимок экрана 2026-09-13 125347" src="https://github.com/user-attachments/assets/fb0e23e9-f1c9-471d-9c4b-ac138af4dc25" />
 
 ### 3. Single task playbook и проверка идемпотентности
 
 Создан плейбук `playbook.yml` для вызова модуля `my_own_module`.
 Выполнена проверка на идемпотентность путем двукратного запуска. При первом запуске файл создается (`changed=1`), при повторном - изменений не происходит (`ok=1, changed=0`).
 
-![Image](task_6_screenshot_1)
+<img width="875" height="401" alt="Снимок экрана 2026-09-13 130610" src="https://github.com/user-attachments/assets/09cf3406-a77f-4a71-8dd8-d08168c49831" />
 
 ### 4. Инициализация коллекции и создание роли
 
@@ -54,11 +54,11 @@
 1. Создана изолированная тестовая директория, куда скопированы плейбук `site.yml` и архив `my_own_namespace-yandex_cloud_elk-1.0.0.tar.gz`.
 2. Коллекция установлена из локального архива:
 
-![Image](task_15_screenshot_1)
+<img width="1020" height="100" alt="Снимок экрана 2026-09-13 133549" src="https://github.com/user-attachments/assets/cc006f46-2a46-45ae-a2f0-38ef08728ee7" />
 
 3. Запущен плейбук `site.yml`, подтвердивший успешное создание файла через установленную коллекцию:
 
-![Image](task_16_screenshot_1)
+<img width="876" height="256" alt="Снимок экрана 2026-09-13 133746" src="https://github.com/user-attachments/assets/c2c5e513-9678-46be-9625-b622c4bb7a82" />
 
 ---
 
@@ -81,7 +81,7 @@
 
 Тестирование модуля на создание, идемпотентность и удаление:
 
-![Image](task_opt_screenshot_1)
+<img width="1131" height="690" alt="Снимок экрана 2026-09-13 141527" src="https://github.com/user-attachments/assets/747c2050-1420-43e9-ace2-ffe14472e043" />
 
 ---
 
@@ -107,11 +107,11 @@
 
 Результат сквозного развертывания стека в Yandex Cloud (PLAY RECAP):
 
-![Image](task_opt_screenshot_2)
+<img width="824" height="106" alt="Снимок экрана 2026-09-13 154727" src="https://github.com/user-attachments/assets/17e8eb2a-e17f-4a9c-b163-b108ebec6d76" />
 
 Проверка доступности и интеграции веб-интерфейса LightHouse с СУБД ClickHouse по внешнему IP:
 
-![Image](task_opt_screenshot_3)
+<img width="1214" height="548" alt="Снимок экрана 2026-09-13 154823" src="https://github.com/user-attachments/assets/be514018-8f17-4151-aba1-a2fc2c23db48" />
 
 ---
 

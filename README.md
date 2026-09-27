@@ -26,3 +26,6 @@
 * [Практика 4. Работа с roles](./ansible-homeworks/08-ansible-04-role/README.md)
 * [Практика 5. Тестирование roles](./ansible-homeworks/08-ansible-05-testing/README.md)
 * [Практика 6. Создание собственных модулей](./ansible-homeworks/08-ansible-06-module/README.md)
+
+### Блок «Непрерывная разработка и интеграция»
+* [Практика 1. Teamcity](./09-ci-05-teamcity/README.md)

@@ -132,7 +132,7 @@ docker compose ps
 
 Веб-интерфейс Chronograf открыт по адресу `http://localhost:8888`:
 
-![Веб-интерфейс Chronograf](task_7_screenshot_1)
+<img width="1246" height="819" alt="Снимок экрана 2026-10-03 174721" src="https://github.com/user-attachments/assets/54031590-0118-4d21-a44e-6a8ce508d298" />
 
 ### Задание 8
 
@@ -150,7 +150,7 @@ SELECT mean("usage_system") AS "mean_usage_system" FROM "telegraf"."autogen"."cp
 
 График утилизации процессора за 15-минутный интервал успешно отображается в интерфейсе:
 
-![График утилизации CPU в Chronograf Data Explorer](task_8_screenshot_1)
+<img width="1917" height="1027" alt="Снимок экрана 2026-10-03 175211" src="https://github.com/user-attachments/assets/ac1f3cfa-2bf9-4ef1-88ab-fdbfb9bdc0bd" />
 
 ### Задание 9
 
@@ -206,7 +206,7 @@ SELECT mean("usage_system") AS "mean_usage_system" FROM "telegraf"."autogen"."cp
 
 Отображение измерений Docker и графика утилизации ресурсов контейнеров в веб-интерфейсе Chronograf:
 
-![Метрики Docker в веб-интерфейсе Chronograf](task_9_screenshot_1)
+<img width="1918" height="1034" alt="Снимок экрана 2026-10-03 180058" src="https://github.com/user-attachments/assets/3fd46d11-07d2-45bd-bfee-3b9999d68335" />
 
 ### Дополнительное задание 1*
 
@@ -233,7 +233,7 @@ SELECT mean("usage_system") AS "mean_usage_system" FROM "telegraf"."autogen"."cp
 
 Содержимое файла `/var/log/26-10-03-awesome-monitoring.log` (7 последовательных записей с интервалом в 1 минуту):
 
-![Содержимое лог файла](task_1_opt_screenshot_1)
+<img width="1572" height="207" alt="Снимок экрана 2026-10-03 181836" src="https://github.com/user-attachments/assets/0ee0d718-ecfe-4ea2-b260-45fa7da80cfe" />
 
 ### Дополнительное задание 2*
 
@@ -248,4 +248,4 @@ SELECT mean("usage_system") AS "mean_usage_system" FROM "telegraf"."autogen"."cp
 
 Внешний вид настроенного дашборда:
 
-![Пользовательский дашборд в Chronograf](task_star_2_screenshot_1)
+<img width="1919" height="885" alt="Снимок экрана 2026-10-03 185834" src="https://github.com/user-attachments/assets/05749bd3-129c-4a57-8569-7be9cba6f898" />

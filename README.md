@@ -29,3 +29,6 @@
 
 ### Блок «Непрерывная разработка и интеграция»
 * [Практика 1. Teamcity](./09-ci-05-teamcity/README.md)
+
+### Блок «Мониторинг и логи»
+* [Практика 1. Системы мониторинга](./monitoring-homeworks/10-monitoring-02-systems/README.md)

@@ -15,7 +15,7 @@ docker compose up -d
 
 После запуска выполнен вход в веб-интерфейс Grafana (`http://localhost:3000`). В разделе Data Sources подключен запущенный Prometheus с сетевым адресом `http://prometheus:9090`. Тест соединения прошел успешно.
 
-![Список подключенных источников данных](task_1_screenshot_1)
+<img width="759" height="515" alt="task_1_screenshot_1" src="https://github.com/user-attachments/assets/0b3bfbd7-774f-476a-8e94-58bff3a35d8c" />
 
 ## Задание 2
 
@@ -55,7 +55,7 @@ docker compose up -d
 
 Общий вид получившегося дашборда:
 
-![Созданный Dashboard с метриками хоста](task_2_screenshot_1)
+<img width="1190" height="602" alt="task_2_screenshot_1" src="https://github.com/user-attachments/assets/41d88107-a76e-43e4-a1a3-3be31377b780" />
 
 ## Задание 3
 
@@ -65,7 +65,7 @@ docker compose up -d
 3. В **Alerting -> Notification policies** контакт `Telegram` задан получателем по умолчанию (Default policy).
 4. Проведена отправка тестового события из интерфейса Grafana.
 
-![Тестовое уведомление в Telegram](task_3_screenshot_1)
+<img width="494" height="309" alt="task_3_screenshot_1" src="https://github.com/user-attachments/assets/323fa2ec-56c4-4e92-9470-be60abf7bdfe" />
 
 Для панели `CPU Utilization` настроено правило алерта `High CPU Load`:
 - Условие срабатывания: загрузка процессора выше 80% (`IS ABOVE 80`).
@@ -76,11 +76,11 @@ docker compose up -d
 
 Итоговый дашборд с активным правилом алерта и сработавшим триггером:
 
-![Итоговый Dashboard со статусом алерта](task_3_screenshot_2)
+<img width="1204" height="615" alt="task_3_screenshot_2" src="https://github.com/user-attachments/assets/12fc304f-5344-4b43-a455-a0afdb68b2fe" />
 
 Уведомления о срабатывании (Firing) и восстановлении (Resolved) в Telegram:
 
-![События Firing и Resolved в Telegram](task_3_screenshot_3)
+<img width="481" height="655" alt="task_3_screenshot_3" src="https://github.com/user-attachments/assets/3c7dac7e-6dd0-4602-bc68-00788ca4035d" />
 
 ## Задание 4
 

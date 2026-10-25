@@ -19,11 +19,11 @@
 
 Все пять контейнеров успешно стартовали и работают стабильно:
 
-![Вывод команды docker ps](task_1_screenshot_1)
+<img width="1368" height="223" alt="task_1_screenshot_1" src="https://github.com/user-attachments/assets/98b6a4b5-67ea-4051-90c7-c8d9da362c09" />
 
 Интерфейс Kibana доступен в браузере по адресу `http://localhost:5601`:
 
-![Главная страница интерфейса Kibana](task_1_screenshot_2)
+<img width="582" height="711" alt="task_1_screenshot_2" src="https://github.com/user-attachments/assets/6d81616c-c42a-4d71-8324-30e978779418" />
 
 ## Задание 2
 
@@ -38,7 +38,7 @@
 
 Список созданных Data Views:
 
-![Созданные Data Views в Kibana](task_2_screenshot_1)
+<img width="685" height="421" alt="task_2_screenshot_1" src="https://github.com/user-attachments/assets/2032974a-dc5e-4ea4-9336-06ba82769c26" />
 
 ### Просмотр и фильтрация логов в Kibana Discover
 
@@ -51,4 +51,4 @@ level : "ERROR"
 
 Все сообщения были распарсены - поля JSON (`level`, `message`, `status_code`) и метаданные контейнера (`container.name`, `agent.version`) доступны для поиска и детального анализа:
 
-![Просмотр и фильтрация логов в Kibana Discover](task_2_screenshot_2)
+<img width="1914" height="939" alt="task_2_screenshot_2" src="https://github.com/user-attachments/assets/6d918b21-e85e-4b9c-a03e-3e2207223e0c" />

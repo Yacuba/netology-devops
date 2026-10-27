@@ -33,3 +33,4 @@
 ### Блок «Мониторинг и логи»
 * [Практика 1. Системы мониторинга](./monitoring-homeworks/10-monitoring-02-systems/README.md)
 * [Практика 2. Средство визуализации Grafana](./monitoring-homeworks/10-monitoring-03-grafana/README.md)
+* [Практика 3. Система сбора логов Elastic Stack](./monitoring-homeworks/10-monitoring-04-elk/README.md)

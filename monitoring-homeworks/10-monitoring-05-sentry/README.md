@@ -6,17 +6,17 @@
 
 Внутри рабочей организации создан проект под стек Python. Раздел Projects отображает созданный проект и базовые показатели активности.
 
-![Список проектов в веб-интерфейсе Sentry](task_1_screenshot_1)
+<img width="629" height="438" alt="task_1_screenshot_1" src="https://github.com/user-attachments/assets/f7626bed-1f93-4a0e-8ae2-027483505c25" />
 
 ## Задание 2. Анализ события и управление инцидентом
 
 В проекте сгенерировано тестовое событие об ошибке. Платформа Sentry зафиксировала контекст сбоя - значения локальных переменных (`dict_var`, `int_var`, `list_var`, `str_var`), имя файла `main.py`, строку падения и стек вызовов.
 
-![Трассировка стека вызовов тестового события Stack Trace](task_2_screenshot_1)
+<img width="1303" height="943" alt="task_2_screenshot_1" src="https://github.com/user-attachments/assets/7102d7de-83d7-4b83-8967-b3c0e9d3e7f7" />
 
 После разбора контекста инцидент отмечен как решенный кнопкой `Resolve`. Журнал issues с фильтром `is:resolved` подтверждает закрытие проблемы.
 
-![Список событий проекта после перевода инцидента в статус Resolved](task_2_screenshot_2)
+<img width="1260" height="197" alt="task_2_screenshot_2" src="https://github.com/user-attachments/assets/3d75999c-eaf3-4fe9-8b02-4292f1c093f6" />
 
 ## Задание 3. Настройка правил оповещений
 
@@ -24,7 +24,7 @@
 
 Для проверки правила инициировано тестовое событие. На привязанный почтовый ящик поступило письмо с метаданными сбоя - именем проекта, уровнем критичности `error`, окружением `prod` и системными тегами.
 
-![Оповещение о новом событии Sentry на электронной почте](task_3_screenshot_1)
+<img width="697" height="621" alt="task_3_screenshot_1" src="https://github.com/user-attachments/assets/c6862235-7f50-4a92-abe9-66dbad71b864" />
 
 ## Задание повышенной сложности
 
@@ -34,4 +34,4 @@
 
 После запуска скрипта все события успешно доставлены в облако. Раздел Issues отображает новые инциденты с переданными тегами и параметрами окружения.
 
-![Список событий issues после отправки данных через Python SDK](task_4_screenshot_1)
+<img width="498" height="348" alt="task_4_screenshot_1" src="https://github.com/user-attachments/assets/fcd3afda-2950-4646-ace6-9809dbbc3450" />

@@ -34,3 +34,5 @@
 * [Практика 1. Системы мониторинга](./monitoring-homeworks/10-monitoring-02-systems/README.md)
 * [Практика 2. Средство визуализации Grafana](./monitoring-homeworks/10-monitoring-03-grafana/README.md)
 * [Практика 3. Система сбора логов Elastic Stack](./monitoring-homeworks/10-monitoring-04-elk/README.md)
+* [Практика 4. Платформа мониторинга Sentry](./monitoring-homeworks/10-monitoring-05-sentry/README.md)
+* [Практика 5. Инцидент-менеджмент](./monitoring-homeworks/10-monitoring-06-incident-management/README.md)

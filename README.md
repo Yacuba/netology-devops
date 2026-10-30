@@ -36,3 +36,6 @@
 * [Практика 3. Система сбора логов Elastic Stack](./monitoring-homeworks/10-monitoring-04-elk/README.md)
 * [Практика 4. Платформа мониторинга Sentry](./monitoring-homeworks/10-monitoring-05-sentry/README.md)
 * [Практика 5. Инцидент-менеджмент](./monitoring-homeworks/10-monitoring-06-incident-management/README.md)
+
+### Блок «Микросервисы»
+* [Практика 1. Введение в микросервисы](./micros-homeworks/11-microservices-01-intro/README.md)

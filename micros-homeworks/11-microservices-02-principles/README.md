@@ -77,7 +77,7 @@ docker compose up -d --build
 docker compose ps
 ```
 
-![Статус запущенных контейнеров docker compose ps](task_3_screenshot_1)
+<img width="1431" height="120" alt="task_3_screenshot_1" src="https://github.com/user-attachments/assets/121647ad-4fb0-4741-a9a9-ed82fbb501fd" />
 
 #### Тестирование маршрутизации и безопасности
 
@@ -103,4 +103,4 @@ curl -s -I http://localhost/images/$FILENAME | head -n 5
 curl -i -X POST -H 'Content-Type: octet/stream' --data-binary @test.jpg http://localhost/upload | head -n 5
 ```
 
-![Проверка сценариев авторизации, загрузки и ограничения доступа](task_3_screenshot_2)
+<img width="1035" height="376" alt="Снимок экрана 2026-10-31 125232" src="https://github.com/user-attachments/assets/ce1ef7ef-270f-4736-8eb5-d7e1372ccfab" />

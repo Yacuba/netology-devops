@@ -119,11 +119,11 @@ docker compose up -d
 
 Авторизация в веб-интерфейсе Kibana по адресу `http://localhost:8081` с логином `admin` и паролем `qwerty123456`:
 
-![Авторизация в веб-интерфейсе Kibana под учетной записью admin](task_4_screenshot_1)
+<img width="783" height="550" alt="task_4_screenshot_1" src="https://github.com/user-attachments/assets/94d64c72-5b5e-476b-bb59-2bf4df64f438" />
 
 После создания Index Pattern с маской `vector-*` и временной меткой `@timestamp` все потоки вывода сервисов `gateway`, `security`, `uploader` и `storage` доступны для фильтрации в разделе Discover:
 
-![Отображение собранных логов сервисов в интерфейсе Kibana Discover](task_4_screenshot_2)
+<img width="1578" height="751" alt="task_4_screenshot_2" src="https://github.com/user-attachments/assets/fbef6f3f-bc7e-4a61-bd2a-15522f5eb19a" />
 
 ## Задача 5: Мониторинг * (необязательная)
 
@@ -151,10 +151,10 @@ docker compose up -d
 
 Проверка состояния сбора метрик в веб-интерфейсе Prometheus по адресу `http://localhost:9090/targets`: все три эндпоинта находятся в активном состоянии `UP`:
 
-![Состояние таргетов сбора метрик в веб-интерфейсе Prometheus](task_5_screenshot_1)
+<img width="934" height="659" alt="task_5_screenshot_1" src="https://github.com/user-attachments/assets/54257a92-c3a9-49b0-be2a-4871aae1e8be" />
 
 Для демонстрации работы мониторинга через API Gateway отправлена серия запросов на аутентификацию, загрузку файлов и чтение сохраненных объектов из MinIO.
 
 Сводный дашборд в веб-интерфейсе Grafana по адресу `http://localhost:8082` фиксирует всплески RPS, суммарные счетчики и процентное распределение нагрузки между `security`, `uploader` и `storage`:
 
-![Дашборд в Grafana с графиками распределения запросов по сервисам](task_5_screenshot_2)
+<img width="1892" height="606" alt="task_5_screenshot_2" src="https://github.com/user-attachments/assets/da525aa9-e19a-41fd-98f2-14ac8d7e5793" />

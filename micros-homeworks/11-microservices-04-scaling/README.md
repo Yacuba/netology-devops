@@ -57,11 +57,11 @@ docker exec -it redis-node-1 redis-cli --cluster create \
 
 Утилита автоматически выделила три мастера и привязала к каждому по одной реплике:
 
-![Распределение слотов и реплик при инициализации](task_2_screenshot_1)
+<img width="435" height="275" alt="task_2_screenshot_1" src="https://github.com/user-attachments/assets/e1f75ece-0c9d-4fbf-9fc0-2130c5e129b3" />
 
 Покрыты все 16384 хеш-слота:
 
-![Подтверждение покрытия всех 16384 слотов](task_2_screenshot_2)
+<img width="334" height="69" alt="task_2_screenshot_2" src="https://github.com/user-attachments/assets/b4099dcc-2aef-4e7e-9607-eacd6890cc3b" />
 
 ### Проверка состояния и топологии
 
@@ -73,7 +73,7 @@ docker exec -it redis-node-1 redis-cli cluster info
 
 Вывод подтверждает готовность кластера (`cluster_state:ok`) и наличие 6 активных узлов (`cluster_known_nodes:6`):
 
-![Статус и параметры кластера](task_2_screenshot_3)
+<img width="381" height="307" alt="task_2_screenshot_3" src="https://github.com/user-attachments/assets/cbe6c96b-b229-4c0d-a10e-324b87a4f5a7" />
 
 Проверка топологии узлов и привязки реплик командой `cluster nodes`:
 
@@ -81,7 +81,7 @@ docker exec -it redis-node-1 redis-cli cluster info
 docker exec -it redis-node-1 redis-cli cluster nodes
 ```
 
-![Топология нод и привязка реплик](task_2_screenshot_4)
+<img width="975" height="120" alt="task_2_screenshot_4" src="https://github.com/user-attachments/assets/aaf9a9cb-173f-4904-8b72-654dabce22d1" />
 
 Итоговое распределение:
 - **Master 1** (`172.28.0.11`) держит слоты `0 - 5460`. Реплика: `172.28.0.15`.
@@ -98,6 +98,6 @@ docker exec -it redis-node-1 redis-cli -c
 
 В интерактивной сессии записаны тестовые ключи и выполнено их чтение:
 
-![Редирект по хеш-слотам и чтение данных](task_2_screenshot_5)
+<img width="411" height="271" alt="task_2_screenshot_5" src="https://github.com/user-attachments/assets/d99d5fe4-a885-40e3-8950-682a5039552d" />
 
 При записи ключей клиент корректно определяет нужный слот и автоматически перенаправляет запросы (`Redirected to slot [...]`) на обслуживающий мастер-узел. Чтение данных также проходит с автоматическим редиректом на нужный узел.

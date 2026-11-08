@@ -40,3 +40,4 @@
 ### Блок «Микросервисы»
 * [Практика 1. Введение в микросервисы](./micros-homeworks/11-microservices-01-intro/README.md)
 * [Практика 2. Микросервисы: принципы](./micros-homeworks/11-microservices-02-principles/README.md)
+* [Практика 3. Микросервисы: подходы](./micros-homeworks/11-microservices-03-approaches/README.md)

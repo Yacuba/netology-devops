@@ -20,7 +20,7 @@ sudo chown -f -R $USER ~/.kube
 microk8s status --wait-ready
 ```
 
-![Статус MicroK8S после первичной установки](task_1_screenshot_1)
+<img width="402" height="86" alt="task_1_screenshot_1" src="https://github.com/user-attachments/assets/77c0354f-959a-4170-9064-b08b997d64e1" />
 
 2. В кластере включены необходимые дополнения DNS и Dashboard:
 
@@ -48,7 +48,7 @@ microk8s kubectl get pods -A
 openssl x509 -noout -text -in /var/snap/microk8s/current/certs/server.crt | grep -A 2 "Subject Alternative Name"
 ```
 
-![Список работающих подов Dashboard и проверка SAN сертификата](task_1_screenshot_2)
+<img width="977" height="271" alt="task_1_screenshot_2" src="https://github.com/user-attachments/assets/d5797383-9cf2-4fe1-a6d1-a7242d0d2a69" />
 
 ### Задание 2. Установка и настройка локального kubectl
 
@@ -77,7 +77,7 @@ sed -i 's/10.130.0.13/153.51.168.222/g' ~/.kube/config
 kubectl get nodes -o wide
 ```
 
-![Вывод команды kubectl get nodes на локальной машине](task_2_screenshot_1)
+<img width="981" height="52" alt="task_2_screenshot_1" src="https://github.com/user-attachments/assets/f597b0e4-b522-4dc8-b621-8f66e0bd9501" />
 
 3. Для доступа к веб-интерфейсу создан административный сервисный аккаунт и сгенерирован токен авторизации:
 
@@ -95,4 +95,4 @@ kubectl port-forward -n kubernetes-dashboard svc/kubernetes-dashboard-kong-proxy
 
 Вход в панель управления через браузер по адресу `https://127.0.0.1:10443` с использованием сгенерированного токена:
 
-![Интерфейс Kubernetes Dashboard в браузере](task_2_screenshot_2)
+<img width="639" height="292" alt="task_2_screenshot_2" src="https://github.com/user-attachments/assets/cf68ff9c-0e5c-4104-9f14-f29de5332f56" />

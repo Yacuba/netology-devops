@@ -42,3 +42,6 @@
 * [Практика 2. Микросервисы: принципы](./micros-homeworks/11-microservices-02-principles/README.md)
 * [Практика 3. Микросервисы: подходы](./micros-homeworks/11-microservices-03-approaches/README.md)
 * [Практика 4. Микросервисы: масштабирование](./micros-homeworks/11-microservices-04-scaling/README.md)
+
+### Блок «Kubernetes: основы, применение и администрирование»
+* [Практика 1. Kubernetes. Причины появления. Команда kubectl](./kuber-homeworks/kuber-homeworks_1.1_03.25/README.md)

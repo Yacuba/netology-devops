@@ -12,7 +12,7 @@ curl -i service-clusterip:9001 | head -n 7
 curl -i service-clusterip:9002 | head -n 7
 ```
 
-![Проверка доступности ClusterIP изнутри кластера](task_1_screenshot_1)
+<img width="581" height="528" alt="task_1_screenshot_1" src="https://github.com/user-attachments/assets/17fc00d2-a6b8-4793-bf4c-69bb44a7e104" />
 
 4. Подготовлен манифест сервиса [service-nodeport.yaml](task_1/service-nodeport.yaml) типа `NodePort`. Сервис открывает доступ к `nginx` на статическом порту нод `30080`.
 5. Доступ к веб-серверу проверен внешними запросами к публичным IP-адресам обеих нод кластера:
@@ -23,7 +23,7 @@ curl -i http://153.51.175.223:30080 | head -n 7
 curl -i http://81.26.191.114:30080 | head -n 7
 ```
 
-![Проверка доступности сервиса NodePort через внешние IP нод](task_1_screenshot_2)
+<img width="580" height="476" alt="task_1_screenshot_2" src="https://github.com/user-attachments/assets/46bf70a6-d76a-4a5f-a38e-3d7174461fb4" />
 
 ---
 
@@ -44,4 +44,4 @@ curl -i http://153.51.175.223/ | head -n 7
 curl -i http://153.51.175.223/api | head -n 7
 ```
 
-![Проверка маршрутизации Ingress по путям / и /api](task_2_screenshot_1)
+<img width="568" height="479" alt="task_2_screenshot_1" src="https://github.com/user-attachments/assets/560ef737-e4f2-4bc0-b04b-d68dc69e0747" />

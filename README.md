@@ -47,3 +47,4 @@
 * [Практика 1. Kubernetes. Причины появления. Команда kubectl](./kuber-homeworks/kuber-homeworks_1.1_03.25/README.md)
 * [Практика 2. Базовые объекты K8S](./kuber-homeworks/k8s-basic-objects/README.md)
 * [Практика 3. Запуск приложений в K8S](./kuber-homeworks/kuber-homeworks_1.3/README.md)
+* [Практика 4. Сетевое взаимодействие в Kubernetes](./kuber-homeworks/kuber-homeworks_1.4/README.md)

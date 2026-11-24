@@ -13,7 +13,7 @@ kubectl get cm,deploy,pod -l app=web-app &&
 kubectl exec deployment/web-app -c multitool -- curl -s http://localhost:80
 ```
 
-![Проверка статуса пода и отдача страницы из ConfigMap через curl](task_1_screenshot_1)
+<img width="633" height="444" alt="task_1_screenshot_1" src="https://github.com/user-attachments/assets/b5fab499-22e0-4023-bf54-9157d18ca88f" />
 
 ---
 
@@ -56,7 +56,7 @@ echo "--- HTTPS запрос через curl ---" && \
 curl -k -s -i --resolve myapp.example.com:443:153.51.175.6 https://myapp.example.com
 ```
 
-![Проверка статуса Secret, Ingress и HTTPS-ответа через curl](task_2_screenshot_1)
+<img width="634" height="595" alt="task_2_screenshot_1" src="https://github.com/user-attachments/assets/a247f45d-391b-4ce6-af4d-0c1844a34ec6" />
 
 ---
 
@@ -100,4 +100,4 @@ echo "=== 4. Попытка удалить под (Forbidden) ===" && \
 kubectl delete pod $POD_NAME --as=developer
 ```
 
-![Проверка прав пользователя developer через RBAC](task_3_screenshot_1)
+<img width="1170" height="375" alt="task_3_screenshot_1" src="https://github.com/user-attachments/assets/9425cd79-6fb2-4c4f-a800-fd928e9a85c2" />

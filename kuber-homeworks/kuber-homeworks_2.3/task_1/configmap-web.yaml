@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: web-config
+  namespace: default
+data:
+  HTTP_PORT: "8080"
+  HTTPS_PORT: "11443"
+  index.html: |
+    <!DOCTYPE html>
+    <html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <title>Netology K8s ConfigMap</title>
+        <style>
+            body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f4f9; }
+            h1 { color: #2c3e50; }
+            p { font-size: 18px; color: #555; }
+        </style>
+    </head>
+    <body>
+        <h1>Страница отдается из ConfigMap</h1>
+        <p>Контейнеры nginx и multitool работают в одном поде без конфликта портов.</p>
+    </body>
+    </html>

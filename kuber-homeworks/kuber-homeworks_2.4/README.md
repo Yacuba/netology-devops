@@ -14,7 +14,7 @@ helm lint task_1/netology-app && \
 helm template test-release task_1/netology-app --set frontend.image.tag="1.26.0" | grep -E "image:|name:"
 ```
 
-![Проверка синтаксиса чарта через helm lint и рендеринг шаблона](task_1_screenshot_1)
+<img width="766" height="288" alt="task_1_screenshot_1" src="https://github.com/user-attachments/assets/4a9acba9-1618-4cf0-bb69-19a243793d2b" />
 
 ---
 
@@ -55,4 +55,4 @@ echo "=== Проверка установленных версий образо�
 kubectl get pods -A -l app.kubernetes.io/component=frontend -o custom-columns="NAMESPACE:.metadata.namespace,POD:.metadata.name,IMAGE:.spec.containers[0].image"
 ```
 
-![Вывод helm list, запущенных ресурсов и версий образов](task_2_screenshot_1)
+<img width="1192" height="699" alt="task_2_screenshot_1" src="https://github.com/user-attachments/assets/e64518ed-0c01-4ada-ac09-5e5b1fb2c484" />

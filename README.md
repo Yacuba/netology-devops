@@ -50,3 +50,4 @@
 * [Практика 4. Сетевое взаимодействие в Kubernetes](./kuber-homeworks/kuber-homeworks_1.4/README.md)
 * [Практика 5. Хранение в K8s](./kuber-homeworks/kuber-homeworks_2.1/README.md)
 * [Практика 6. Настройка приложений и управление доступом в Kubernetes](./kuber-homeworks/kuber-homeworks_2.3/README.md)
+* [Практика 7. Helm](./kuber-homeworks/kuber-homeworks_2.4/README.md)
